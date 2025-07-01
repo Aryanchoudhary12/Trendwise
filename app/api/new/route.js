@@ -58,12 +58,7 @@ export async function POST(req) {
             id: session.user.id,
           },
         },
-        categories: {
-          connectOrCreate: {
-            where: { name: category },
-            create: { name: category },
-          },
-        },
+        category:category
       },
     });
 

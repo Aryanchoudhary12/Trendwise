@@ -4,12 +4,14 @@ import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { Loader} from "lucide-react";
+import { Loader, Sparkles } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import toast, { Toaster } from "react-hot-toast";
 import { NextResponse } from "next/server";
+import { useSession } from "next-auth/react";
 function PostDetails() {
+  const { data: session } = useSession();
   const { register, handleSubmit, reset } = useForm();
   const [data, setData] = useState([]);
   const params = useParams();
@@ -24,7 +26,8 @@ function PostDetails() {
 
   const authorID = data?.authorId;
   console.log(data);
-  if(!id) return NextResponse.json({error:"No post available"},{status:500})
+  if (!id)
+    return NextResponse.json({ error: "No post available" }, { status: 500 });
   return (
     <div className="flex flex-col justify-center items-center">
       <Toaster />
@@ -34,31 +37,30 @@ function PostDetails() {
       <h1 className="font-roboto text-5xl font-medium w-11/12 text-center">
         {data?.title ?? "Loading ..."}
       </h1>
-      <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-secondary">
-        {data?.author?.name ?? "loading..."}
-      </p>
+      {data.published == true ? (
+        <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-secondary">
+          {data?.author?.name ?? "loading..."}
+        </p>
+      ) : (
+        <div className="flex gap-1 items-center justify-centermt-4 p-2 px-4 rounded-full font-poppins bg-secondary mt-4">
+          <Sparkles className="h-4 w-4" /> Groq AI
+        </div>
+      )}
       {data?.image ? (
         <Image
           src={data?.image}
           alt="post image"
           width={200}
           height={200}
-          className="h-full w-8/12 object-contain mt-4 rounded-md"
+          className="h-full w-10/12 object-contain mt-4 rounded-md"
         ></Image>
       ) : (
         <Loader className="mt-4 h-10 w-10 stroke-muted animate-spin" />
       )}
-      {data?.categories?.map((cat) => {
-        return (
-          <p
-            className="mt-4 p-2 px-4 rounded-full font-poppins bg-secondary"
-            key={cat?.id}
-          >
-            {cat?.name ?? "loading..."}
-          </p>
-        );
-      })}
-      <p className="mt-4 font-poppins w-11/12 text-start">{data.content}</p>
+      <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-secondary">
+        {data?.category ?? "loading..."}
+      </p>
+      <p className="mt-4 font-poppins w-11/12 text-center">{data.content}</p>
 
       <div className="mt-10 mb-10 w-full p-4">
         <p className="w-full font-medium font-poppins ">
@@ -69,6 +71,9 @@ function PostDetails() {
           className="flex w-full p-1 bg-secondary-foreground mt-2 rounded-sm"
           onSubmit={handleSubmit(async (data) => {
             try {
+              if (!session) {
+                toast.error("Unauthorized user. Signin please");
+              }
               const formData = new FormData();
               formData.append("content", data.content);
               formData.append("authorId", authorID);
@@ -109,7 +114,9 @@ function PostDetails() {
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col gap-1">
-                    <p className="text-sm font-medium">{comment?.author?.name}</p>
+                    <p className="text-sm font-medium">
+                      {comment?.author?.name}
+                    </p>
                     <p className="font-roboto text-xs text-muted -mt-1">
                       {new Date(comment?.createdAt).toDateString()}
                     </p>

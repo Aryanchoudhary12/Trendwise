@@ -2,18 +2,15 @@ import { CornerDownRight } from "lucide-react";
 import Image from "next/image";
 import community from "@/public/peoples.png";
 import { PrismaClient } from "@/lib/generated/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOption";
 import PostsListClient from "./Postlist";
+import { redirect } from "next/dist/server/api-utils";
+import Link from "next/link";
 const prisma = new PrismaClient();
 export default async function Home() {
-  const post = await prisma.post.findMany({
-    include: {
-      categories: {
-        select: {
-          name: true,
-        },
-      },
-    },
-  });
+  const session = await getServerSession(authOptions);
+  const post = await prisma.post.findMany();
   const users = await prisma.user.findMany();
   return (
     <div className="">
@@ -32,10 +29,21 @@ export default async function Home() {
             scans thousands of sources to bring you real-time, personalized
             content that matters.
           </p>
-          <button className="flex gap-1 p-2 rounded-full bg-button font-roboto w-32 justify-center items-center mt-4">
-            <CornerDownRight className="h-5 w-5" />
-            Explore now
-          </button>
+          {session ? (
+            <Link href="/dashboard">
+              <button className="flex gap-1 p-2 rounded-full bg-button font-roboto w-32 justify-center items-center mt-4">
+                <CornerDownRight className="h-5 w-5" />
+                Explore now
+              </button>
+            </Link>
+          ) : (
+             <Link href="/api/auth/signin">
+              <button className="flex gap-1 p-2 rounded-full bg-button font-roboto w-32 justify-center items-center mt-4">
+                <CornerDownRight className="h-5 w-5" />
+                Explore now
+              </button>
+            </Link>
+          )}
         </div>
         <div className="flex h-fit justify-center relative p-4">
           <div className="absolute bg-secondary/40 h-full w-6/12 -z-10 rounded-full animate-pulse"></div>

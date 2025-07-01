@@ -39,7 +39,7 @@ model Post {
   author     User       @relation(fields: [authorId], references: [id])
   authorId   String
   comments   Comment[]
-  categories Category[] @relation("PostCategories")
+  category   String?
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
 }
@@ -54,11 +54,6 @@ model Comment {
   createdAt DateTime @default(now())
 }
 
-model Category {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  posts Post[] @relation("PostCategories")
-}
 
 model Account {
   id                String  @id @default(cuid())

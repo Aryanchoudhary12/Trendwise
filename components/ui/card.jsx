@@ -2,7 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-function Card({id, image, title, description, category, time }) {
+import { Sparkles } from "lucide-react";
+function Card({id, image, title, description, category, time, published }) {
    const router = useRouter()
   return (
    
@@ -20,8 +21,13 @@ function Card({id, image, title, description, category, time }) {
         <span className="text-xs font-medium p-1 px-3 rounded-xl text-muted-foreground bg-muted-foreground/20 w-fit">
           {category}
         </span>
-        <p className="text-sm font-normal">{description}</p>
-        <p className="text-xs font-roboto font-thin text-muted ">{time}</p>
+        <p className="text-sm font-normal font-roboto">{description}</p>
+        {!published && (
+          <div className="flex justify-start items-center gap-1 font-roboto text-sm text-blue-300">
+            <Sparkles className="h-4 w-4"/> Groq AI
+          </div>
+        )}
+        <p className="text-xs font-roboto text-muted ">{time}</p>
         <button className="p-2 px-4 rounded-sm bg-button font-roboto text-sm" onClick={()=>router.push(`/blog/${id}`)}>
           View full Post
         </button>

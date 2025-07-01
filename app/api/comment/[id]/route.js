@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "../../../../lib/generated/prisma";
-const prisma = new PrismaClient()
-export async function DELETE(_,context) {
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOption";
+const prisma = new PrismaClient();
+
+export async function DELETE(_, context) {
+  const session = await getServerSession(authOptions);
   try {
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { id } = await context.params;
     const parseid = parseInt(id, 10);
     if (isNaN(parseid)) {
@@ -10,7 +17,7 @@ export async function DELETE(_,context) {
     }
     await prisma.comment.delete({
       where: {
-        id:parseid,
+        id: parseid,
       },
     });
     return NextResponse.json(
@@ -19,6 +26,9 @@ export async function DELETE(_,context) {
     );
   } catch (error) {
     console.error("Something went wrong", error);
-    return NextResponse.json({error:"An internal error occur."},{status:500})
+    return NextResponse.json(
+      { error: "An internal error occur." },
+      { status: 500 }
+    );
   }
 }

@@ -87,7 +87,7 @@ function Blogtable({ posts }) {
                 </td>
                 <td className=" p-2 text-start">
                   <span className="font-roboto text-sm p-1 px-3 rounded-full bg-button">
-                    {unique.categories.map((cat) => cat.name).join("")}
+                    {unique.category}
                   </span>
                 </td>
                 <td className=" p-2 text-start">

@@ -18,7 +18,6 @@ export async function GET(_, context) {
     },
     include: {
       author: true,
-      categories: true,
       comments: {
         include: { author: true },
       },
@@ -29,6 +28,10 @@ export async function GET(_, context) {
 
 export async function POST(req, context) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { id } = await context.params;
     const parseid = parseInt(id, 10);
     if (isNaN(parseid)) {
@@ -67,8 +70,13 @@ export async function POST(req, context) {
     );
   }
 }
+
 export async function DELETE(_, context) {
+  const session = await getServerSession(authOptions);
   try {
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { id } = await context.params;
     const parseid = parseInt(id, 10);
     if (isNaN(parseid)) {
@@ -149,12 +157,7 @@ export async function PATCH(req, context) {
             id: session.user.id,
           },
         },
-        categories: {
-          connectOrCreate: {
-            where: { name: category },
-            create: { name: category },
-          },
-        },
+        category:category
       },
     });
 

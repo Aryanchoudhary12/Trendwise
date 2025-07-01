@@ -1,0 +1,32 @@
+"use client";
+
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import tw from "@/public/tw.png"
+import Image from "next/image";
+export default function SignInPage() {
+  const params = useSearchParams();
+  const callbackUrl = params.get("callbackUrl") || "/";
+
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="flex flex-col gap-3 bg-secondary-foreground shadow-md rounded p-8 w-full max-w-sm">
+        <div className="w-full flex justify-start items-center gap-1">
+          <Image src={tw} alt="logo" className="h-12 w-12"></Image>
+          <div>
+            <p className="text-white text-xl font-bold font-roboto">
+              TREND<span className="text-muted">WISE</span>
+            </p>
+            <p className="text-sm font-roboto -mt-1">AI meets trends.</p>
+          </div>
+        </div>
+        <button
+          onClick={() => signIn("google", { callbackUrl })}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full"
+        >
+          Sign in with Google
+        </button>
+      </div>
+    </div>
+  );
+}

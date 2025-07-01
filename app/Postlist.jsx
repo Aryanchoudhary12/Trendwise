@@ -10,7 +10,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import oops from "@/public/oops.jpg"
+import oops from "@/public/oops.jpg";
 import { MessageCircleX, UserRoundXIcon } from "lucide-react";
 import user from "@/public/user.png";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -31,8 +31,7 @@ export default function PostsListClient({ posts, users }) {
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
     const matchCategory =
-      searchInput === "All" ||
-      post.categories.some((cat) => cat.name === searchInput);
+      searchInput === "All" || post.category === searchInput;
     return filteredList && matchCategory;
   });
   const category = [
@@ -109,7 +108,8 @@ export default function PostsListClient({ posts, users }) {
                     image={post1.image}
                     title={post1.title.slice(0, 30)}
                     description={post1.content.slice(0, 150)}
-                    category={post1.categories.map((cat) => cat.name).join("")}
+                    published={post1?.published}
+                    category={post1.category}
                     time={new Date(post1.createdAt).toDateString()}
                   />
                 );
@@ -177,7 +177,7 @@ export default function PostsListClient({ posts, users }) {
           {users && users.length > 0 ? (
             <div>
               <div className="flex flex-wrap gap-4 mt-4">
-                {users.slice(startindex2,endindex2).map((user) => {
+                {users.slice(startindex2, endindex2).map((user) => {
                   return (
                     <div
                       className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-md border-2 border-secondary/50"
