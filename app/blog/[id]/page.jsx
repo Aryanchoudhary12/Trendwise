@@ -8,6 +8,7 @@ import { Loader} from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import toast, { Toaster } from "react-hot-toast";
+import { NextResponse } from "next/server";
 function PostDetails() {
   const { register, handleSubmit, reset } = useForm();
   const [data, setData] = useState([]);
@@ -23,13 +24,14 @@ function PostDetails() {
 
   const authorID = data?.authorId;
   console.log(data);
+  if(!id) return NextResponse.json({error:"No post available"},{status:500})
   return (
     <div className="flex flex-col justify-center items-center">
       <Toaster />
-      <p className="mt-10 text-sm font-roboto text-muted">
+      <p className="mt-10 text-base font-roboto text-muted">
         Published on : {new Date(data.createdAt).toDateString()}
       </p>
-      <h1 className="font-poppins text-5xl font-medium w-8/12 text-center">
+      <h1 className="font-roboto text-5xl font-medium w-11/12 text-center">
         {data?.title ?? "Loading ..."}
       </h1>
       <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-secondary">
@@ -37,10 +39,10 @@ function PostDetails() {
       </p>
       {data?.image ? (
         <Image
-          src={data.image}
+          src={data?.image}
           alt="post image"
-          width={20}
-          height={20}
+          width={200}
+          height={200}
           className="h-full w-8/12 object-contain mt-4 rounded-md"
         ></Image>
       ) : (
@@ -56,7 +58,7 @@ function PostDetails() {
           </p>
         );
       })}
-      <p className="mt-4 font-poppins w-9/12 text-center">{data.content}</p>
+      <p className="mt-4 font-poppins w-11/12 text-start">{data.content}</p>
 
       <div className="mt-10 mb-10 w-full p-4">
         <p className="w-full font-medium font-poppins ">
@@ -106,14 +108,14 @@ function PostDetails() {
                     />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
-                  <div className="flex flex-col">
-                    <p className="font-roboto">{comment?.author?.name}</p>
+                  <div className="flex flex-col gap-1">
+                    <p className="text-sm font-medium">{comment?.author?.name}</p>
                     <p className="font-roboto text-xs text-muted -mt-1">
                       {new Date(comment?.createdAt).toDateString()}
                     </p>
                   </div>
                 </div>
-                <p className="mt-2 font-poppins">{comment?.content}</p>
+                <p className="mt-1 font-poppins pl-10">{comment?.content}</p>
               </div>
             );
           })}

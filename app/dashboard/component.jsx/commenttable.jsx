@@ -27,17 +27,17 @@ function Commenttable({ comments }) {
           onChange={(e) => setSearch(e.target.value)}
         />
         <button className="p-2 rounded-sm text-sm bg-primary px-2">
-          Delete
+          Search
         </button>
       </form>
 
       <table className="w-10/12 bg-secondary-foreground rounded-sm">
         <thead className="border-b-2 border-secondary/50 w-full">
           <tr className="">
-            <th className="p-2 text-start font-semibold font-roboto">Title</th>
+            <th className="p-2 text-start font-semibold font-roboto">Comment & Post</th>
             <th className="p-2 text-start font-semibold font-roboto">Date</th>
             <th className="p-2 text-start font-semibold font-roboto">
-              Category
+              Author
             </th>
             <th className="p-2 text-start font-roboto">Action</th>
           </tr>
@@ -48,8 +48,8 @@ function Commenttable({ comments }) {
               <tr className="border-b-2 border-secondary/50" key={unique.id}>
                 <td className=" p-2 text-start font-poppins">
                   <p>{unique?.content}</p>
-                  <span className="text-sm text-white/80">
-                    {unique?.post?.title}
+                  <span className="text-xs text-white/80">
+                    <span className="font-semibold text-muted">Post</span> :  {unique?.post?.title.split(0,50)}
                   </span>
                 </td>
                 <td className=" p-2 text-start text-muted font-roboto text-sm">

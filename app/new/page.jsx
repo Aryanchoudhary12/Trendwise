@@ -1,64 +1,82 @@
 "use client";
 import React from "react";
 import { useState, useRef } from "react";
-import { CameraIcon, Loader } from "lucide-react";
+import { CameraIcon, Loader, Sparkles } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
-import message from "../../public/addition.png"
+import message from "../../public/addition.png";
 function New() {
-  const { register, handleSubmit, setError, reset } = useForm();
+  const {
+    register: registerManual,
+    handleSubmit: handleManualSubmit,
+    reset: resetManual,
+    setError: setManualError,
+  } = useForm();
+  const {
+    register: registerGenerated,
+    handleSubmit: handleGeneratedSubmit,
+    reset: resetGenerated,
+  } = useForm();
   const inputRef = useRef(null);
   const router = useRouter();
   const [selectedFile, setSelectedFile] = useState(null);
   const [isSubmitting, setSubmitting] = useState(false);
+  const [isSubmitting2, setSubmitting2] = useState(false);
   const handleupload = () => {
     inputRef.current.click();
   };
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
+  const onGenerate = async (data) => {
+    setSubmitting2(true);
+    try {
+      const response = await axios.post("/api/new/generate", {
+        title: data.title,
+        category: data.category,
+      });
+
+      toast.success("Blog generated successfully!");
+      resetGenerated();
+      console.log("Generated post:", response.data);
+    } catch (error) {
+      toast.error("Failed to generate blog post");
+      console.error(error);
+    } finally {
+      setSubmitting2(false);
+    }
+  };
   return (
     <div>
       <Toaster />
       <form
         className="flex flex-col justify-center items-start p-4 gap-2 w-full"
-        onSubmit={handleSubmit(async (data) => {
+        onSubmit={handleManualSubmit(async (data) => {
           setSubmitting(true);
           try {
             const formData = new FormData();
             formData.append("title", data.title);
             formData.append("category", data.category);
             formData.append("description", data.description);
-            if (selectedFile) {
-              const base64Image = await toBase64(selectedFile);
-              console.log(typeof base64Image);
-              formData.append("image", base64Image);
-            }
+            formData.append("image", selectedFile);
             await axios.post("/api/new", formData);
             toast.success("Posted successfully");
-            reset();
+            resetManual();
             router.refresh();
           } catch (error) {
             toast.error("An unexpected error occur");
             console.error("Error creating issue:", error);
-            setError("Something went wrong!");
+            setManualError("Something went wrong!");
           } finally {
             setSubmitting(false);
           }
         })}
       >
-        <div className="mb-4">
-          <div className="flex justify-start items-center gap-2">
-            <Image src={message} alt="" className="h-10 w-10"></Image>
+        <div className="mb-4 mt-10">
+          <div className="flex justify-start items-center gap-3">
+            <Image src={message} alt="" className="h-8 w-8"></Image>
             <div className="">
-              <h1 className="font-bold text-3xl font-roboto">CREATE POST</h1>
+              <h1 className="font-bold text-2xl font-roboto">CREATE POST</h1>
               <hr className="border-2 w-28 border-primary rounded-md" />
             </div>
           </div>
@@ -90,12 +108,12 @@ function New() {
           type="text"
           placeholder="Title"
           className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
-          {...register("title")}
+          {...registerManual("title")}
           required
         />
         <select
           className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
-          {...register("category")}
+          {...registerManual("category")}
           required
         >
           <option value="" className="bg-black">
@@ -124,7 +142,7 @@ function New() {
         <textarea
           placeholder="Description"
           className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground h-36"
-          {...register("description")}
+          {...registerManual("description")}
           required
         />
         <button
@@ -133,6 +151,59 @@ function New() {
         >
           Submit Post{" "}
           {isSubmitting ? <Loader className="animate-spin stroke-2" /> : ""}
+        </button>
+      </form>
+      <div className="flex justify-start items-center gap-3 p-4">
+        <Image src={message} alt="" className="h-8 w-8"></Image>
+        <div className="">
+          <h1 className="font-bold text-2xl font-roboto">GENERATE POST</h1>
+          <hr className="border-2 w-28 border-primary rounded-md" />
+        </div>
+      </div>
+      <form
+        onSubmit={handleGeneratedSubmit(onGenerate)}
+        className="flex flex-col gap-2 p-4"
+      >
+        <input
+          type="text"
+          placeholder="Title"
+          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          {...registerGenerated("title")}
+          required
+        />
+        <select
+          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          {...registerGenerated("category")}
+          required
+        >
+          <option value="" className="bg-black">
+            Select category
+          </option>
+          <option value="Travel" className="bg-black">
+            Travel
+          </option>
+          <option value="Lifestyle" className="bg-black">
+            Lifestyle
+          </option>
+          <option value="Educational" className="bg-black">
+            Educational
+          </option>
+          <option value="Sports" className="bg-black">
+            Sports
+          </option>
+          <option value="Entertaiment" className="bg-black">
+            Entertainment
+          </option>
+          <option value="Other" className="bg-black">
+            Other
+          </option>
+        </select>
+        <button
+          type="submit"
+          className="flex justify-center items-center gap-1 bg-primary p-2 px-4 rounded-sm text-base font-medium font-roboto mt-2"
+        >
+          <Sparkles className="h-4 w-4" /> Generate Post{" "}
+          {isSubmitting2 ? <Loader className="animate-spin stroke-2" /> : ""}
         </button>
       </form>
     </div>

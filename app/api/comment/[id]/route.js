@@ -3,14 +3,14 @@ import { PrismaClient } from "../../../../lib/generated/prisma";
 const prisma = new PrismaClient()
 export async function DELETE(_,context) {
   try {
-    const { params } = context;
-    const id = parseInt(params?.id, 10);
-    if (isNaN(id)) {
+    const { id } = await context.params;
+    const parseid = parseInt(id, 10);
+    if (isNaN(parseid)) {
       return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
     }
     await prisma.comment.delete({
       where: {
-        id,
+        id:parseid,
       },
     });
     return NextResponse.json(

@@ -160,7 +160,7 @@ function Navbar() {
 
           <Sheet className="md:hidden">
             <SheetTrigger className="md:hidden">
-              <MenuIcon className="mr-4 p-1 h-8 w-8 border-2 border-secondary" />
+              <MenuIcon className="mr-4 p-1 h-8 w-8 bg-secondary/30 rounded-md stroke-muted" />
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px]">
               <SheetHeader>

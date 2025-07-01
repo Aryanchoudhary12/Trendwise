@@ -61,14 +61,22 @@ async function Dashboard() {
             </div>
         </div>
         <div className="p-2">
-          <h1 className="text-2xl font-bold font-roboto">Blogs</h1>
-          <hr className="border-2 w-12 border-primary rounded-md" />
+          <div className="flex justify-start items-center gap-2">
+            <Inbox className="bg-muted/60 h-8 w-8 p-1 rounded-md stroke-muted-foreground"></Inbox>
+            <div className="">
+              <h1 className="font-bold text-2xl font-roboto">POST</h1>
+              <hr className="border-2 w-10 border-primary rounded-md" />
+            </div>
+          </div>
         </div>
         <Blogtable posts={post} />
-        <div className="p-2">
-          <h1 className="text-2xl font-bold font-roboto">Comments</h1>
-          <hr className="border-2 w-28 border-primary rounded-md" />
-        </div>
+        <div className="flex justify-start items-center gap-2 p-2">
+            <MessageCircleCode className="bg-muted/60 h-8 w-8 p-1 rounded-md stroke-muted-foreground"/>
+            <div className="">
+              <h1 className="font-bold text-2xl font-roboto">COMMENT</h1>
+              <hr className="border-2 w-20 border-primary rounded-md" />
+            </div>
+          </div>
         <Commenttable comments={comment}/>
       </div>
     </div>

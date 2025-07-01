@@ -2,17 +2,19 @@ import { PrismaClient } from "@/lib/generated/prisma";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOption";
+import cloudinary from "@/lib/cloudinary";
 const prisma = new PrismaClient();
 
 export async function GET(_, context) {
-  const { params } = context;
-  const id = parseInt(params.id, 10);
-  if (isNaN(id)) {
+  const { id } = await context.params;
+  const parseid = parseInt(id, 10);
+  if (isNaN(parseid)) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
   }
+
   const post = await prisma.post.findUnique({
     where: {
-      id,
+      id: parseid,
     },
     include: {
       author: true,
@@ -27,9 +29,9 @@ export async function GET(_, context) {
 
 export async function POST(req, context) {
   try {
-    const { params } = context;
-    const id = parseInt(params.id, 10);
-    if (isNaN(id)) {
+    const { id } = await context.params;
+    const parseid = parseInt(id, 10);
+    if (isNaN(parseid)) {
       return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
     }
     const formData = await req.formData();
@@ -45,14 +47,18 @@ export async function POST(req, context) {
       data: {
         content: content,
         post: {
-          connect: { id },
+          connect: { id: parseid },
         },
         author: {
           connect: { id: authorId },
         },
       },
     });
-    return NextResponse.json(newComment,{message:"Successfully poasted"},{ status: 201 });
+    return NextResponse.json(
+      newComment,
+      { message: "Successfully poasted" },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(
@@ -61,16 +67,16 @@ export async function POST(req, context) {
     );
   }
 }
-export async function DELETE(_,context) {
+export async function DELETE(_, context) {
   try {
-    const { params } = context;
-    const id = parseInt(params?.id, 10);
-    if (isNaN(id)) {
+    const { id } = await context.params;
+    const parseid = parseInt(id, 10);
+    if (isNaN(parseid)) {
       return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
     }
     await prisma.post.delete({
       where: {
-        id,
+        id: parseid,
       },
     });
     return NextResponse.json(
@@ -79,27 +85,30 @@ export async function DELETE(_,context) {
     );
   } catch (error) {
     console.error("Something went wrong", error);
-    return NextResponse.json({error:"An internal error occur."},{status:500})
+    return NextResponse.json(
+      { error: "An internal error occur." },
+      { status: 500 }
+    );
   }
 }
 
-export async function PATCH(req,context) {
+export async function PATCH(req, context) {
   try {
-    const { params } = context;
+    const { id } = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const id = parseInt(params?.id, 10);
-    if (isNaN(id)) {
+    const parseid = parseInt(id, 10);
+    if (isNaN(parseid)) {
       return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
     }
     const formData = await req.formData();
     const title = formData.get("title")?.toString();
     const category = formData.get("category")?.toString();
     const description = formData.get("description")?.toString();
-    const base64Image = formData.get("image")?.toString();
+    const imageFile = formData.get("image");
 
     if (!title || !category || !description) {
       return NextResponse.json(
@@ -107,13 +116,33 @@ export async function PATCH(req,context) {
         { status: 400 }
       );
     }
+    let imageUrl = "/oops.jpg";
+
+    if (imageFile && typeof imageFile.arrayBuffer === "function") {
+      const buffer = Buffer.from(await imageFile.arrayBuffer());
+
+      try {
+        const uploaded = await new Promise((resolve, reject) => {
+          cloudinary.uploader
+            .upload_stream({ resource_type: "image" }, (error, result) => {
+              if (error) reject(error);
+              else resolve(result);
+            })
+            .end(buffer);
+        });
+
+        imageUrl = uploaded.secure_url;
+      } catch (err) {
+        console.error("Cloudinary upload failed:", err.message);
+      }
+    }
 
     const newPost = await prisma.post.update({
-      where: { id: id },
+      where: { id: parseid },
       data: {
         title,
         content: description,
-        image: base64Image,
+        image: imageUrl,
         published: true,
         author: {
           connect: {
@@ -129,7 +158,11 @@ export async function PATCH(req,context) {
       },
     });
 
-    return NextResponse.json(newPost,{message:"Post edited Successfully"},{ status: 201 });
+    return NextResponse.json(
+      newPost,
+      { message: "Post edited Successfully" },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("POST error:", error);
     return NextResponse.json(

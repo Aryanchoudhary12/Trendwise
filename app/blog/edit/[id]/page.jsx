@@ -1,14 +1,12 @@
 "use client";
 import React from "react";
 import { useState, useRef } from "react";
-import { CameraIcon, Loader } from "lucide-react";
+import { CameraIcon, Loader, Pencil } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
-import Image from "next/image";
-import message from "../../../../public/pencil.png"
 function EditPost() {
   const { register, handleSubmit, setError, reset } = useForm();
   const inputRef = useRef(null);
@@ -20,13 +18,6 @@ function EditPost() {
   };
   const param = useParams();
   const id = param?.id;
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
   return (
     <div>
       <Toaster />
@@ -40,9 +31,7 @@ function EditPost() {
             formData.append("category", data.category);
             formData.append("description", data.description);
             if (selectedFile) {
-              const base64Image = await toBase64(selectedFile);
-              console.log(typeof base64Image);
-              formData.append("image", base64Image);
+              formData.append("image", selectedFile);
             }
             await axios.patch(`/api/post/${id}`, formData);
             reset();
@@ -57,12 +46,12 @@ function EditPost() {
           }
         })}
       >
-        <div className="mb-4">
+        <div className="mb-4 mt-10">
           <div className="flex justify-start items-center gap-2">
-            <Image src={message} alt="" className="h-10 w-10"></Image>
+            <Pencil className="bg-muted/50 h-8 w-8 p-1 rounded-md stroke-muted"></Pencil>
             <div className="">
-              <h1 className="font-bold text-3xl font-roboto">EDIT POST</h1>
-              <hr className="border-2 w-28 border-primary rounded-md" />
+              <h1 className="font-bold text-2xl font-roboto">EDIT POST</h1>
+              <hr className="border-2 w-20 border-primary rounded-md" />
             </div>
           </div>
         </div>

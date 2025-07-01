@@ -14,7 +14,7 @@ export default async function Home() {
       },
     },
   });
-  console.log(post);
+  const users = await prisma.user.findMany();
   return (
     <div className="">
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
@@ -48,7 +48,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <PostsListClient posts={post} />
+      <PostsListClient posts={post} users={users} />
     </div>
   );
 }
