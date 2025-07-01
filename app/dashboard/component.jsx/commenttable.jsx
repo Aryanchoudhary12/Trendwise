@@ -18,7 +18,7 @@ function Commenttable({ comments }) {
   return (
     <div className="flex flex-col gap-2 p-2">
       <Toaster />
-      <form className="p-1 rounded-sm bg-secondary-foreground w-fit">
+      <form className="flex justify-center items-center p-1 rounded-sm bg-secondary-foreground w-fit">
         <input
           type="text"
           placeholder="Search comment by author"

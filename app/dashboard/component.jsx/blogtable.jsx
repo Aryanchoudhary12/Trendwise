@@ -21,8 +21,8 @@ function Blogtable({ posts }) {
   return (
     <div className="flex flex-col gap-2 p-2">
       <Toaster />
-      <div className="flex gap-4">
-        <form className="p-1 rounded-sm bg-secondary-foreground">
+      <div className="flex flex-wrap  gap-4">
+        <form className="flex justify-center items-center p-1 rounded-sm bg-secondary-foreground">
           <input
             type="text"
             placeholder="Search post"

@@ -17,7 +17,7 @@ export async function POST(req) {
     const title = formData.get("title")?.toString();
     const category = formData.get("category")?.toString();
     const description = formData.get("description")?.toString();
-    const imageFile = formData.get("image"); // <-- fix here
+    const imageFile = formData.get("image");
 
     if (!title || !category || !description) {
       return NextResponse.json(
