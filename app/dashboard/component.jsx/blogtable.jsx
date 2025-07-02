@@ -80,7 +80,7 @@ function Blogtable({ posts }) {
             return (
               <tr className="border-b-2 border-secondary/50" key={unique.id}>
                 <td className=" p-2 text-start font-poppins text-sm">
-                  {unique.title}
+                  {unique.title.split(0,100)}
                 </td>
                 <td className=" p-2 text-start text-muted font-roboto text-sm">
                   {new Date(unique.createdAt).toDateString()}
