@@ -16,10 +16,10 @@ export default async function Home() {
     <div className="">
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
         <div className="flex flex-col justify-center items-center md:items-start p-4">
-          <div className="flex text-lg font-bold font-roboto">
-            Stay Ahead of the Curve with  <span className="flex gap-1 pl-1"><Sparkles className="stroke-blue-300"/> AI-Powered Insights with</span>
-          </div>
-          <p className="text-6xl  font-extrabold -mt-2 ">
+          <span className="flex gap-1 pl-1 font-bold font-roboto py-2 text-lg">
+            <Sparkles className="stroke-blue-300 " /> AI-Powered Insights with
+          </span>
+          <p className="text-6xl font-extrabold -mt-2 ">
             TREND
             <span className="text-muted ">WISE</span>
           </p>
@@ -37,7 +37,7 @@ export default async function Home() {
               </button>
             </Link>
           ) : (
-             <Link href="/api/auth/signin">
+            <Link href="/api/auth/signin">
               <button className="flex gap-1 p-2 rounded-full bg-button font-roboto w-32 justify-center items-center mt-4">
                 <CornerDownRight className="h-5 w-5" />
                 Explore now
