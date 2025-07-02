@@ -31,7 +31,7 @@ function Commenttable({ comments }) {
         </button>
       </form>
 
-      <table className="w-10/12 bg-secondary-foreground rounded-sm">
+      <table className="w-full bg-secondary-foreground rounded-sm">
         <thead className="border-b-2 border-secondary/50 w-full">
           <tr className="">
             <th className="p-2 text-start font-semibold font-roboto">Comment & Post</th>

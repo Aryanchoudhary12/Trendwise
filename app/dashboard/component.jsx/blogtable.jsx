@@ -15,14 +15,14 @@ function Blogtable({ posts }) {
       .toLowerCase()
       .includes(search.toLowerCase());
     const filterPost =
-      Filter === "All" || post.categories.some((cat) => cat.name === Filter);
+      Filter === "All" || post.category === Filter;
     return searchedpost && filterPost;
   });
   return (
     <div className="flex flex-col gap-2 p-2">
       <Toaster />
-      <div className="flex flex-wrap  gap-4">
-        <form className="flex justify-center items-center p-1 rounded-sm bg-secondary-foreground">
+      <div className="flex flex-wrap  gap-4 w-fit">
+        <form className="flex justify-center items-center p-1 rounded-sm bg-secondary-foreground w-fit">
           <input
             type="text"
             placeholder="Search post"
@@ -35,7 +35,7 @@ function Blogtable({ posts }) {
           </button>
         </form>
         <select
-          className=" rounded-xs p-3  text-sm bg-secondary-foreground"
+          className="w-fit rounded-xs p-3  text-sm bg-secondary-foreground"
           value={Filter}
           onChange={(e) => setFilter(e.target.value)}
           required
@@ -64,7 +64,7 @@ function Blogtable({ posts }) {
         </select>
       </div>
 
-      <table className="w-10/12 bg-secondary-foreground rounded-sm">
+      <table className="w-full bg-secondary-foreground rounded-sm">
         <thead className="border-b-2 border-secondary/50 w-full">
           <tr className="">
             <th className="p-2 text-start font-semibold font-roboto">Title</th>
