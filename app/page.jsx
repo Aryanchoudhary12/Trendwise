@@ -16,8 +16,8 @@ export default async function Home() {
     <div className="">
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
         <div className="flex flex-col justify-center items-center md:items-start p-4">
-          <div className="flex flex-wrap text-lg font-bold font-roboto">
-            Stay Ahead of the Curve with <span className="flex pl-2 gap-1"><Sparkles className="stroke-blue-300"/> AI-Powered Insights with</span>
+          <div className="flex flex-wrap text-lg font-bold font-roboto gap-2">
+            Stay Ahead of the Curve with <span className="flex gap-1"><Sparkles className="stroke-blue-300"/> AI-Powered Insights with</span>
           </div>
           <p className="text-6xl  font-extrabold -mt-2 ">
             TREND
