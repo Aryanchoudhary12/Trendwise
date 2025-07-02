@@ -11,7 +11,7 @@ function SignInForm() {
   const callbackUrl = params.get("callbackUrl") || "/";
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-[42rem] flex items-center justify-center p-2">
       <div className="flex flex-col gap-3 bg-secondary-foreground shadow-md rounded p-8 w-full max-w-sm">
         <div className="w-full flex justify-start items-center gap-1">
           <Image src={tw} alt="logo" className="h-12 w-12" />
