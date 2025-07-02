@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Pencil, Trash2, Loader } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 function Blogtable({ posts }) {
   const [search, setSearch] = useState("");
   const [Filter, setFilter] = useState("All");
@@ -14,8 +15,7 @@ function Blogtable({ posts }) {
     const searchedpost = post.title
       .toLowerCase()
       .includes(search.toLowerCase());
-    const filterPost =
-      Filter === "All" || post.category === Filter;
+    const filterPost = Filter === "All" || post.category === Filter;
     return searchedpost && filterPost;
   });
   return (
@@ -79,8 +79,8 @@ function Blogtable({ posts }) {
           {filteredPost.map((unique) => {
             return (
               <tr className="border-b-2 border-secondary/50" key={unique.id}>
-                <td className=" p-2 text-start font-poppins text-sm">
-                  {unique.title.split(0,100)}
+                <td className=" p-2 text-start font-poppins text-sm font-medium hover:text-muted transition-colors">
+                  <Link href={`/blog/${unique.id}`} > {unique.title.split(0, 100)}</Link>
                 </td>
                 <td className=" p-2 text-start text-muted font-roboto text-sm">
                   {new Date(unique.createdAt).toDateString()}
@@ -92,7 +92,10 @@ function Blogtable({ posts }) {
                 </td>
                 <td className=" p-2 text-start">
                   <div className="flex flex-wrap gap-2 w-fit">
-                    <button className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-button px-2" onClick={() => router.push(`/blog/edit/${unique.id}`)}>
+                    <button
+                      className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-button px-2"
+                      onClick={() => router.push(`/blog/edit/${unique.id}`)}
+                    >
                       <Pencil className="h-4 w-4 stroke-3" /> Edit
                     </button>
                     <button
@@ -101,8 +104,8 @@ function Blogtable({ posts }) {
                         setSubmitting(true);
                         try {
                           await axios.delete(`/api/post/${unique.id}`);
-                          toast.success("Post deleted successfully")
-                          router.refresh()
+                          toast.success("Post deleted successfully");
+                          router.refresh();
                         } catch (error) {
                           toast.error("An internal error occured");
                           console.log("Something went wrong", error);
