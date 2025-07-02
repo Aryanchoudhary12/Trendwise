@@ -84,12 +84,7 @@ export async function POST(req) {
         image: imageUrl,
         published: false,
         author: { connect: { id: session.user.id } },
-        categories: {
-          connectOrCreate: {
-            where: { name: category },
-            create: { name: category },
-          },
-        },
+        category:category
       },
     });
 

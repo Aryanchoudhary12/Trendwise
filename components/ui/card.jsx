@@ -12,7 +12,7 @@ function Card({id, image, title, description, category, time, published }) {
         <Image
           src={image}
           alt={title}
-          className="h-full w-full object-contain rounded-md"
+          className="h-40 w-full object-cover rounded-md"
           width={200}
           height={200}
         />
