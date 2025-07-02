@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { Trash2, Loader } from "lucide-react";
-import toast,{ Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 function Commenttable({ comments }) {
@@ -34,11 +34,11 @@ function Commenttable({ comments }) {
       <table className="w-full bg-secondary-foreground rounded-sm">
         <thead className="border-b-2 border-secondary/50 w-full">
           <tr className="">
-            <th className="p-2 text-start font-semibold font-roboto">Comment & Post</th>
-            <th className="p-2 text-start font-semibold font-roboto">Date</th>
             <th className="p-2 text-start font-semibold font-roboto">
-              Author
+              Comment & Post
             </th>
+            <th className="p-2 text-start font-semibold font-roboto">Date</th>
+            <th className="p-2 text-start font-semibold font-roboto">Author</th>
             <th className="p-2 text-start font-roboto">Action</th>
           </tr>
         </thead>
@@ -49,7 +49,8 @@ function Commenttable({ comments }) {
                 <td className=" p-2 text-start font-poppins">
                   <p>{unique?.content}</p>
                   <span className="text-xs text-white/80">
-                    <span className="font-semibold text-muted">Post</span> :  {unique?.post?.title.split(0,50)}
+                    <span className="font-semibold text-muted">Post</span> :{" "}
+                    {unique?.post?.title.split(0, 50)}
                   </span>
                 </td>
                 <td className=" p-2 text-start text-muted font-roboto text-sm">
@@ -65,8 +66,8 @@ function Commenttable({ comments }) {
                       setSubmitting(true);
                       try {
                         await axios.delete(`/api/comment/${unique.id}`);
-                        toast.success("Post deleted successfully");
-                        router.refresh()
+                        toast.success("Comment deleted successfully");
+                        router.refresh();
                       } catch (error) {
                         toast.error("An internal error occured");
                         console.log("Something went wrong", error);

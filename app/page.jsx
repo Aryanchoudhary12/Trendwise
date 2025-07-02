@@ -5,8 +5,8 @@ import { PrismaClient } from "@/lib/generated/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOption";
 import PostsListClient from "./Postlist";
-import { redirect } from "next/dist/server/api-utils";
 import Link from "next/link";
+import { Sparkles } from "lucide-react";
 const prisma = new PrismaClient();
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -16,9 +16,9 @@ export default async function Home() {
     <div className="">
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
         <div className="flex flex-col justify-center items-center md:items-start p-4">
-          <p className="text-lg font-bold font-roboto">
-            Stay Ahead of the Curve with AI-Powered Insights with
-          </p>
+          <div className="flex flex-wrap text-lg font-bold font-roboto">
+            Stay Ahead of the Curve with <span className="flex pl-2 gap-1"><Sparkles className="stroke-blue-300"/> AI-Powered Insights with</span>
+          </div>
           <p className="text-6xl  font-extrabold -mt-2 ">
             TREND
             <span className="text-muted ">WISE</span>

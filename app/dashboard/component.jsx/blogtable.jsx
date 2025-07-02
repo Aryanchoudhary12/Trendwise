@@ -64,7 +64,7 @@ function Blogtable({ posts }) {
         </select>
       </div>
 
-      <table className="w-full bg-secondary-foreground rounded-sm">
+      <table className="w-full bg-secondary-foreground rounded-sm ">
         <thead className="border-b-2 border-secondary/50 w-full">
           <tr className="">
             <th className="p-2 text-start font-semibold font-roboto">Title</th>
@@ -91,7 +91,7 @@ function Blogtable({ posts }) {
                   </span>
                 </td>
                 <td className=" p-2 text-start">
-                  <div className="flex gap-2 w-fit">
+                  <div className="flex flex-wrap gap-2 w-fit">
                     <button className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-button px-2" onClick={() => router.push(`/blog/edit/${unique.id}`)}>
                       <Pencil className="h-4 w-4 stroke-3" /> Edit
                     </button>
