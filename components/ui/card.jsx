@@ -35,7 +35,7 @@ function Card({
             </div>
           )}
         </div>
-        <p className="text-sm font-normal font- ">
+        <p className="text-sm font-normal font-roboto">
           {description}
         </p>
       </div>

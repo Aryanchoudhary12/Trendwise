@@ -32,18 +32,23 @@ function PostDetails() {
     <div className="flex flex-col justify-center items-center">
       <Toaster />
       <p className="mt-10 text-base font-roboto text-muted">
-        Published on : {new Date(data.createdAt).toDateString()}
+        <span className="font-poppins font-medium text-secondary">
+          Published on :{" "}
+        </span>
+        {new Date(data.createdAt).toDateString()}
       </p>
       <h1 className="font-roboto text-5xl font-medium w-11/12 text-center">
         {data?.title ?? "Loading ..."}
       </h1>
       {data.published == true ? (
-        <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-secondary">
+        <p className="mt-4 font-poppins ">
+          <span className="font-semibold text-secondary">Author :</span>{" "}
           {data?.author?.name ?? "loading..."}
         </p>
       ) : (
-        <div className="flex gap-1 items-center justify-centermt-4 p-2 px-4 rounded-full font-poppins bg-secondary mt-4">
-          <Sparkles className="h-4 w-4" /> Groq AI
+        <div className="flex gap-2 items-center justify-center font-poppins mt-4 font-medium">
+          <span className="font-semibold text-secondary">Author :</span>
+          <div className="flex justify-center items-center gap-1"><Sparkles className="h-5 w-5" /> Groq AI</div>
         </div>
       )}
       {data?.image ? (
@@ -57,7 +62,7 @@ function PostDetails() {
       ) : (
         <Loader className="mt-4 h-10 w-10 stroke-muted animate-spin" />
       )}
-      <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-secondary">
+      <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-muted/90">
         {data?.category ?? "loading..."}
       </p>
       <p className="mt-4 font-poppins w-11/12 text-center">{data.content}</p>

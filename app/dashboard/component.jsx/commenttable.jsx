@@ -26,7 +26,7 @@ function Commenttable({ comments }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="p-2 rounded-sm text-sm bg-primary px-2">
+        <button className="p-2 rounded-sm text-sm bg-button px-2">
           Search
         </button>
       </form>

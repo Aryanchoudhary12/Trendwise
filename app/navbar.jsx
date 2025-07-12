@@ -139,7 +139,11 @@ function Navbar() {
                 </Avatar>
               </HoverCardTrigger>
               <HoverCardContent>
-                <div className="flex justify-between items-center gap-4">
+               
+                <div
+                  className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-xl px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]"
+                  key={user.name}
+                >
                   <Avatar className="h-10 w-10">
                     <AvatarImage
                       src={session?.user?.image ?? undefined}
@@ -147,21 +151,28 @@ function Navbar() {
                     />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
-                  <p className="text-white font-roboto">
-                    Username : {session?.user?.name ?? undefined}
-                    <br />
-                    <span>Email : {session?.user?.email}</span>
-                  </p>
+                  <div className="flex flex-col justify-start items-start">
+                    <p className="text-white font-poppins font-medium text-base">
+                      {session?.user?.name ?? undefined}
+                    </p>
+                    <span className="text-xs ">{session?.user?.email}</span>
+                  </div>
                 </div>
               </HoverCardContent>
             </HoverCard>
           )}
           {session ? (
-            <button className="flex gap-1 p-2 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-32 justify-center items-center  text-sm" onClick={signOut}>
+            <button
+              className="flex gap-1 p-2 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-32 justify-center items-center  text-sm"
+              onClick={signOut}
+            >
               Sign Out
             </button>
           ) : (
-            <button className="flex gap-1 p-2 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-32 justify-center items-center  text-sm" onClick={signIn}>
+            <button
+              className="flex gap-1 p-2 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-32 justify-center items-center  text-sm"
+              onClick={signIn}
+            >
               Sign In
             </button>
           )}
