@@ -142,7 +142,7 @@ function Navbar() {
                
                 <div
                   className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-xl px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]"
-                  key={user.name}
+                  key={session?.user?.name}
                 >
                   <Avatar className="h-10 w-10">
                     <AvatarImage
