@@ -13,20 +13,23 @@
   --color-muted:var(--muted);
   --color-muted-foreground:var(--muted-foreground);
   --color-button:var(--button);
+  --color-accent:var(--accent);
   --color-secondary-foreground:var(--secondary-foreground)
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
 
-    --background: #230431;
+    --background: #222831;
     --foreground: #ededed;
-    --primary: #7A1CAC;
-    --secondary: #AD49E1;
-    --muted: #ee85d7;
-    --muted-foreground: #EBD3F8;
-    --button: #B33791;
-    --secondary-foreground: #410959;
+
+    --muted: #F79B72;
+    --muted-foreground: #D1A980;
+     --primary: #ae9c80;
+    --secondary: #DFD0B8;
+    --button: #FE7743;
+    --accent:#9929EA;
+    --secondary-foreground: #393E46;
   }
 }
 .font-roboto{

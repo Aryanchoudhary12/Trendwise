@@ -74,10 +74,13 @@ function New() {
       >
         <div className="mb-4 mt-10">
           <div className="flex justify-start items-center gap-3">
-            <Image src={message} alt="" className="h-8 w-8"></Image>
-            <div className="">
-              <h1 className="font-bold text-2xl font-roboto">CREATE POST</h1>
-              <hr className="border-2 w-28 border-primary rounded-md" />
+            <div className="flex gap-2 items-center">
+              <Image src={message} alt="" className="h-7 w-7"></Image>
+              <div className="">
+                <h1 className="font-black text-3xl font-poppins">
+                  Create <span className="pl-2">Post.</span>
+                </h1>
+              </div>
             </div>
           </div>
         </div>
@@ -147,17 +150,18 @@ function New() {
         />
         <button
           type="submit"
-          className="flex justify-center items-center gap-1 bg-button p-2 px-4 rounded-full text-sm font-medium font-roboto mt-2"
+          className="flex justify-center items-center gap-1 bg-accent p-2 px-4 rounded-sm text-sm font-medium font-roboto mt-2 text-white"
         >
           Submit Post{" "}
           {isSubmitting ? <Loader className="animate-spin stroke-2" /> : ""}
         </button>
       </form>
-      <div className="flex justify-start items-center gap-3 p-4">
-        <Image src={message} alt="" className="h-8 w-8"></Image>
+      <div className="flex justify-start items-center gap-2 p-4">
+        <Image src={message} alt="" className="h-7 w-7"></Image>
         <div className="">
-          <h1 className="font-bold text-2xl font-roboto">GENERATE POST</h1>
-          <hr className="border-2 w-28 border-primary rounded-md" />
+          <h1 className="font-black text-3xl font-poppins">
+            Generate <span className="pl-2">Post.</span>
+          </h1>
         </div>
       </div>
       <form
@@ -200,7 +204,7 @@ function New() {
         </select>
         <button
           type="submit"
-          className="flex justify-center items-center gap-1 bg-primary p-2 px-4 rounded-sm text-base font-medium font-roboto mt-2"
+          className="flex w-fit justify-center items-center gap-1 bg-blue-500 p-2 px-4 rounded-sm text-base font-medium font-roboto mt-2"
         >
           <Sparkles className="h-4 w-4" /> Generate Post{" "}
           {isSubmitting2 ? <Loader className="animate-spin stroke-2" /> : ""}

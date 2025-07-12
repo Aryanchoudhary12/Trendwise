@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useRef } from "react";
-import { CameraIcon, Loader, Pencil } from "lucide-react";
+import { CameraIcon, Loader } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -47,12 +47,10 @@ function EditPost() {
         })}
       >
         <div className="mb-4 mt-10">
-          <div className="flex justify-start items-center gap-2">
-            <Pencil className="bg-muted/50 h-8 w-8 p-1 rounded-md stroke-muted"></Pencil>
-            <div className="">
-              <h1 className="font-bold text-2xl font-roboto">EDIT POST</h1>
-              <hr className="border-2 w-20 border-primary rounded-md" />
-            </div>
+          <div className="">
+            <h1 className="font-black text-3xl font-poppins">
+              Edit <span className="pl-2">Post.</span>
+            </h1>
           </div>
         </div>
         <div>
@@ -121,7 +119,7 @@ function EditPost() {
         />
         <button
           type="submit"
-          className="flex justify-center items-center gap-1 bg-button p-2 px-4 rounded-full text-sm font-medium font-roboto mt-2"
+          className="flex justify-center items-center gap-1 text-white bg-accent p-2 px-4 rounded-sm text-sm font-medium font-roboto mt-2"
         >
           Edit Post
           {isSubmitting ? <Loader className="animate-spin stroke-2" /> : ""}

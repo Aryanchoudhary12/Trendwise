@@ -37,37 +37,35 @@ async function Dashboard() {
     <div>
       <div className="p-4">
         <div className="flex items-center justify-start gap-4 p-2">
-          <div className="flex justify-center items-center gap-2 p-3 bg-primary/50 border-2 border-primary rounded-md">
-            <Inbox className="h-8 w-8 stroke-muted" />
-            <div>
-              <p className="font-roboto font-semibold">Posts</p>
-              <p className="text-lg font-bold -mt-2">{postCount}</p>
+          <div className="flex justify-center items-center gap-2 p-3 bg-secondary-foreground rounded-md border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]">
+            <Inbox className="h-8 w-8 stroke-secondary stroke-1" />
+            <div className="flex flex-col gap-1">
+              <p className="font-poppins font-medium">Posts</p>
+              <p className="text-lg font-bold -mt-2 font-poppins">
+                {postCount}
+              </p>
             </div>
           </div>
-          <div className="flex justify-center items-center gap-2 p-3 bg-primary/50 border-2 border-primary rounded-md">
-            <MessageCircleCode className="h-8 w-8 stroke-muted" />
-            <div>
-              <p className="font-roboto font-semibold">Comments</p>
-              <p className="text-lg font-bold -mt-2">{commentCount}</p>
+          <div className="flex justify-center items-center gap-2 p-3 bg-secondary-foreground rounded-md border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]">
+            <MessageCircleCode className="h-8 w-8 stroke-secondary stroke-1" />
+            <div className="flex  flex-col gap-1">
+              <p className="font-poppins font-medium ">Comments</p>
+              <p className="text-lg font-bold -mt-2 font-poppins">
+                {commentCount}
+              </p>
             </div>
           </div>
         </div>
         <div className="p-2">
-          <div className="flex justify-start items-center gap-2">
-            <Inbox className="bg-muted/60 h-8 w-8 p-1 rounded-md stroke-muted-foreground"></Inbox>
-            <div className="">
-              <h1 className="font-bold text-2xl font-roboto">POST</h1>
-              <hr className="border-2 w-10 border-primary rounded-md" />
-            </div>
+          <div className="flex justify-start items-center gap-2 mt-4">
+            <Inbox className=" h-8 w-8 rounded-md stroke-secondary"></Inbox>
+              <h1 className=" text-3xl font-poppins font-black">Posts.</h1>
           </div>
         </div>
         <Blogtable posts={post} />
-        <div className="flex justify-start items-center gap-2 p-2">
-          <MessageCircleCode className="bg-muted/60 h-8 w-8 p-1 rounded-md stroke-muted-foreground" />
-          <div className="">
-            <h1 className="font-bold text-2xl font-roboto">COMMENT</h1>
-            <hr className="border-2 w-20 border-primary rounded-md" />
-          </div>
+        <div className="flex justify-start items-center gap-1 p-2">
+          <MessageCircleCode className=" h-10 w-10 rounded-md stroke-secondary" />
+          <h1 className=" text-3xl font-poppins font-black">Comments.</h1>
         </div>
         <Commenttable comments={comment} />
       </div>

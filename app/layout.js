@@ -1,17 +1,17 @@
-"use client"
+"use client";
 import "./globals.css";
 import Navbar from "./navbar";
 import { SessionProvider } from "next-auth/react";
-import { Roboto_Condensed,Poppins } from "next/font/google";
+import { Roboto_Condensed, Poppins } from "next/font/google";
 import AuthProviders from "./providers/authprovider";
 const robotoCondensed = Roboto_Condensed({
   subsets: ["latin"],
-  weight: ["200","400","500","600","700"],
+  weight: ["100", "200", "400", "500", "600", "700", "800", "900"],
   variable: "--roboto-condensed",
 });
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["200","400","500","600","700"],
+  weight: ["100", "200", "400", "500", "600", "700", "800", "900"],
   variable: "--poppins",
 });
 export default function RootLayout({ children }) {

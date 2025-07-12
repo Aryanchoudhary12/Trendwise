@@ -1,4 +1,3 @@
-import { CornerDownRight } from "lucide-react";
 import Image from "next/image";
 import community from "@/public/peoples.png";
 import { PrismaClient } from "@/lib/generated/prisma";
@@ -10,7 +9,11 @@ import { Sparkles } from "lucide-react";
 const prisma = new PrismaClient();
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  const post = await prisma.post.findMany();
+  const post = await prisma.post.findMany({
+    include: {
+      author: true,
+    },
+  });
   const users = await prisma.user.findMany();
   return (
     <div className="">
@@ -31,29 +34,24 @@ export default async function Home() {
           </p>
           {session ? (
             <Link href="/dashboard">
-              <button className="flex gap-1 p-2 rounded-full bg-button font-roboto w-32 justify-center items-center mt-4">
-                <CornerDownRight className="h-5 w-5" />
+              <button className="flex gap-1 p-3 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-40 justify-center items-center mt-4 text-sm">
                 Explore now
               </button>
             </Link>
           ) : (
             <Link href="/api/auth/signin">
-              <button className="flex gap-1 p-2 rounded-full bg-button font-roboto w-32 justify-center items-center mt-4">
-                <CornerDownRight className="h-5 w-5" />
+              <button className="flex gap-1 p-3 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-40 justify-center items-center mt-4 text-sm">
                 Explore now
               </button>
             </Link>
           )}
         </div>
-        <div className="flex h-fit justify-center relative p-4">
-          <div className="absolute bg-secondary/40 h-full w-6/12 -z-10 rounded-full animate-pulse"></div>
-          <Image
-            src={community}
-            alt="peoples"
-            className="w-10/12 "
-            property=""
-          ></Image>
-        </div>
+        <Image
+          src={community}
+          alt="peoples"
+          className="w-10/12 "
+          property=""
+        ></Image>
       </div>
 
       <PostsListClient posts={post} users={users} />

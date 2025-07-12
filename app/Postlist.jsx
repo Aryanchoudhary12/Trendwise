@@ -1,8 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "@/components/ui/card";
-import Image from "next/image";
-import message from "../public/message.png";
+
 import {
   Pagination,
   PaginationContent,
@@ -10,9 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import oops from "@/public/oops.jpg";
 import { MessageCircleX, UserRoundXIcon } from "lucide-react";
-import user from "@/public/user.png";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function PostsListClient({ posts, users }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -78,7 +75,7 @@ export default function PostsListClient({ posts, users }) {
             <div key={category.name} className="h-fit w-fit">
               <button
                 className={`p-2 px-4 rounded-full ${
-                  searchInput == category.name ? "bg-button" : "bg-button/50"
+                  searchInput == category.name ? "bg-button" : "bg-muted/70"
                 }`}
                 onClick={() => setSearchInput(category.name)}
               >
@@ -90,10 +87,10 @@ export default function PostsListClient({ posts, users }) {
       </div>
       <div className="p-4 mt-2">
         <div className="flex justify-start items-center gap-2">
-          <Image src={message} alt="" className="h-8 w-8"></Image>
           <div className="mb-2">
-            <h1 className="font-bold text-2xl font-roboto">LATEST POSTS</h1>
-            <hr className="border-2 w-28 border-primary rounded-md" />
+            <h1 className="font-black text-3xl font-poppins">
+              Latest <span className="pl-2">Posts</span>.
+            </h1>
           </div>
         </div>
 
@@ -110,6 +107,7 @@ export default function PostsListClient({ posts, users }) {
                     description={post1.content.slice(0, 150)}
                     published={post1?.published}
                     category={post1.category}
+                    author={post1.author.name}
                     time={new Date(post1.createdAt).toDateString()}
                   />
                 );
@@ -167,10 +165,10 @@ export default function PostsListClient({ posts, users }) {
           </div>
         )}
         <div className="flex justify-start items-center gap-2 mt-4">
-          <Image src={user} alt="" className="h-10 w-10"></Image>
           <div className="mb-1">
-            <h1 className="font-bold text-2xl font-roboto">OUR USERS</h1>
-            <hr className="border-2 w-28 border-primary rounded-md" />
+            <h1 className="font-black text-3xl font-poppins">
+              Our <span className="pl-2">Users</span>.
+            </h1>
           </div>
         </div>
         <div className="mt-4 mb-10">
@@ -180,7 +178,7 @@ export default function PostsListClient({ posts, users }) {
                 {users.slice(startindex2, endindex2).map((user) => {
                   return (
                     <div
-                      className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-md border-2 border-secondary/50"
+                      className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-xl px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]"
                       key={user.name}
                     >
                       <Avatar className="h-10 w-10">
@@ -190,11 +188,12 @@ export default function PostsListClient({ posts, users }) {
                         />
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
-                      <p className="text-white font-roboto">
-                        Username : {user?.name ?? undefined}
-                        <br />
-                        <span>Email : {user?.email}</span>
-                      </p>
+                      <div className="flex flex-col justify-start items-start">
+                        <p className="text-white font-poppins font-medium text-base">
+                          {user?.name ?? undefined}
+                        </p>
+                        <span className="text-xs ">{user?.email}</span>
+                      </div>
                     </div>
                   );
                 })}
