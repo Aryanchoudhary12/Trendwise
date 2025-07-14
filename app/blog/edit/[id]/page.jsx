@@ -22,7 +22,7 @@ function EditPost() {
     <div>
       <Toaster />
       <form
-        className="flex flex-col justify-center items-start p-4 gap-2 w-full"
+        className="flex flex-col justify-center items-start p-4 gap-2 w-full sm:w-11/12 md:w-10/12 lg:w-9/12"
         onSubmit={handleSubmit(async (data) => {
           setSubmitting(true);
           try {
@@ -46,16 +46,16 @@ function EditPost() {
           }
         })}
       >
-        <div className="mb-4 mt-10">
+        <div className="mb-4 mt-5">
           <div className="">
-            <h1 className="font-black text-3xl font-poppins">
+            <h1 className="font-bold text-2xl font-poppins">
               Edit <span className="pl-2">Post.</span>
             </h1>
           </div>
         </div>
         <div>
           <div
-            className="flex items-center gap-2 rounded-xs p-3 w-fit text-sm bg-secondary-foreground cursor-pointer font-roboto font-medium"
+            className="flex items-center gap-2 rounded-md p-3 w-fit text-sm bg-secondary-foreground border-2 border-muted/10 cursor-pointer font-sans font-medium border-2 border-muted/10"
             onClick={handleupload}
           >
             <CameraIcon />
@@ -79,12 +79,12 @@ function EditPost() {
         <input
           type="text"
           placeholder="Title"
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground border-2 border-muted/10"
           {...register("title")}
           required
         />
         <select
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground border-2 border-muted/10"
           {...register("category")}
           required
         >
@@ -113,13 +113,13 @@ function EditPost() {
 
         <textarea
           placeholder="Description"
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground h-36"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground border-2 border-muted/10 h-36"
           {...register("description")}
           required
         />
         <button
           type="submit"
-          className="flex justify-center items-center gap-1 text-white bg-accent p-2 px-4 rounded-sm text-sm font-medium font-roboto mt-2"
+          className="flex justify-center items-center gap-1 text-white bg-accent p-2 px-4 rounded-sm text-sm font-medium font-poppins mt-2"
         >
           Edit Post
           {isSubmitting ? <Loader className="animate-spin stroke-2" /> : ""}

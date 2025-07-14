@@ -50,7 +50,7 @@ function New() {
     <div>
       <Toaster />
       <form
-        className="flex flex-col justify-center items-start p-4 gap-2 w-full"
+        className="flex flex-col justify-center items-start p-4 gap-2 w-full sm:w-11/12 md:w-10/12 lg:w-9/12"
         onSubmit={handleManualSubmit(async (data) => {
           setSubmitting(true);
           try {
@@ -75,10 +75,10 @@ function New() {
         <div className="mb-4 mt-10">
           <div className="flex justify-start items-center gap-3">
             <div className="flex gap-2 items-center">
-              <Image src={message} alt="" className="h-7 w-7"></Image>
+              <Image src={message} alt="" className="h-5 w-5"></Image>
               <div className="">
-                <h1 className="font-black text-3xl font-poppins">
-                  Create <span className="pl-2">Post.</span>
+                <h1 className="font-bold text-xl font-poppins">
+                  Create New <span className="">Post.</span>
                 </h1>
               </div>
             </div>
@@ -86,7 +86,7 @@ function New() {
         </div>
         <div>
           <div
-            className="flex items-center gap-2 rounded-xs p-3 w-fit text-sm bg-secondary-foreground cursor-pointer font-roboto font-medium"
+            className="flex items-center gap-2 rounded-md p-3 w-fit text-sm bg-secondary-foreground cursor-pointer font-sans font-medium border-2 border-muted/10"
             onClick={handleupload}
           >
             <CameraIcon />
@@ -110,12 +110,12 @@ function New() {
         <input
           type="text"
           placeholder="Title"
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground border-2 border-muted/10"
           {...registerManual("title")}
           required
         />
         <select
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground border-2 border-muted/10"
           {...registerManual("category")}
           required
         >
@@ -144,7 +144,7 @@ function New() {
 
         <textarea
           placeholder="Description"
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground h-36"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground h-36 border-2 border-muted/10"
           {...registerManual("description")}
           required
         />
@@ -157,26 +157,26 @@ function New() {
         </button>
       </form>
       <div className="flex justify-start items-center gap-2 p-4">
-        <Image src={message} alt="" className="h-7 w-7"></Image>
+        <Image src={message} alt="" className="h-5 w-5"></Image>
         <div className="">
-          <h1 className="font-black text-3xl font-poppins">
-            Generate <span className="pl-2">Post.</span>
+          <h1 className="font-bold text-xl font-poppins">
+            Generate <span className="pl-1">Post.</span>
           </h1>
         </div>
       </div>
       <form
         onSubmit={handleGeneratedSubmit(onGenerate)}
-        className="flex flex-col gap-2 p-4"
+        className="flex flex-col gap-2 p-4 w-full sm:w-11/12 md:w-10/12 lg:w-9/12 "
       >
         <input
           type="text"
           placeholder="Title"
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground border-2 border-muted/10"
           {...registerGenerated("title")}
           required
         />
         <select
-          className=" rounded-xs p-3 w-full text-sm bg-secondary-foreground"
+          className=" rounded-md p-3 w-full text-sm bg-secondary-foreground border-2 border-muted/10"
           {...registerGenerated("category")}
           required
         >

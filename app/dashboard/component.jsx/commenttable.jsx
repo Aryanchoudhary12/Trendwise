@@ -18,7 +18,7 @@ function Commenttable({ comments }) {
   return (
     <div className="flex flex-col gap-2 p-2">
       <Toaster />
-      <form className="flex justify-center items-center p-1 rounded-sm bg-secondary-foreground w-fit">
+      <form className="flex justify-center items-center p-1 rounded-md bg-secondary-foreground w-fit border-2 border-muted/10">
         <input
           type="text"
           placeholder="Search comment by author"
@@ -26,7 +26,7 @@ function Commenttable({ comments }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="p-2 rounded-sm text-sm bg-button px-2">
+        <button className="p-2 rounded-md text-sm bg-button px-2">
           Search
         </button>
       </form>
@@ -34,19 +34,19 @@ function Commenttable({ comments }) {
       <table className="w-full bg-secondary-foreground rounded-sm">
         <thead className="border-b-2 border-secondary/50 w-full">
           <tr className="">
-            <th className="p-2 text-start font-semibold font-roboto">
+            <th className="pl-4 p-2 text-start font-medium font-poppins text-sm">
               Comment & Post
             </th>
-            <th className="p-2 text-start font-semibold font-roboto">Date</th>
-            <th className="p-2 text-start font-semibold font-roboto">Author</th>
-            <th className="p-2 text-start font-roboto">Action</th>
+            <th className="p-2 text-start font-medium font-poppins text-sm">Date</th>
+            <th className="p-2 text-start font-medium font-poppins text-sm">Author</th>
+            <th className="p-2 text-start font-poppins text-sm font-medium">Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredcomment.map((unique) => {
             return (
-              <tr className="border-b-2 border-secondary/50" key={unique.id}>
-                <td className=" p-2 text-start font-poppins">
+              <tr className="border-t-2 border-muted/20" key={unique.id}>
+                <td className="pl-4 p-2 text-start font-poppins">
                   <p>{unique?.content}</p>
                   <span className="text-xs text-white/80">
                     <span className="font-semibold text-muted">Post</span> :{" "}
@@ -61,7 +61,7 @@ function Commenttable({ comments }) {
                 </td>
                 <td className=" p-2 text-start">
                   <button
-                    className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-primary px-2"
+                    className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-accent px-2"
                     onClick={async () => {
                       setSubmitting(true);
                       try {

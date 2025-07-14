@@ -58,14 +58,14 @@ async function Dashboard() {
         </div>
         <div className="p-2">
           <div className="flex justify-start items-center gap-2 mt-4">
-            <Inbox className=" h-8 w-8 rounded-md stroke-secondary"></Inbox>
-              <h1 className=" text-3xl font-poppins font-black">Posts.</h1>
+            <Inbox className=" h-7 w-7 rounded-md stroke-secondary stroke-1"></Inbox>
+              <h1 className=" text-2xl font-poppins font-semibold">Posts .</h1>
           </div>
         </div>
         <Blogtable posts={post} />
-        <div className="flex justify-start items-center gap-1 p-2">
-          <MessageCircleCode className=" h-10 w-10 rounded-md stroke-secondary" />
-          <h1 className=" text-3xl font-poppins font-black">Comments.</h1>
+        <div className="flex justify-start items-center gap-1 p-2 my-2">
+          <MessageCircleCode className=" h-7 w-7 rounded-md stroke-secondary stroke-1" />
+          <h1 className=" text-2xl font-poppins font-semibold">Comments .</h1>
         </div>
         <Commenttable comments={comment} />
       </div>

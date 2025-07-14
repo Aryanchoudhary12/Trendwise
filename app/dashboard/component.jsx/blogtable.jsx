@@ -18,11 +18,12 @@ function Blogtable({ posts }) {
     const filterPost = Filter === "All" || post.category === Filter;
     return searchedpost && filterPost;
   });
+  
   return (
     <div className="flex flex-col gap-2 p-2">
       <Toaster />
       <div className="flex flex-wrap  gap-4 w-fit">
-        <form className="flex justify-center items-center p-1 rounded-sm bg-secondary-foreground w-fit">
+        <form className="flex justify-center items-center p-1 rounded-md bg-secondary-foreground w-fit border-2 border-muted/10 active:outline-1 active:outline-muted/20">
           <input
             type="text"
             placeholder="Search post"
@@ -30,12 +31,12 @@ function Blogtable({ posts }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="p-2 rounded-sm text-sm bg-button px-2">
+          <button className="p-2 rounded-md text-sm bg-button px-2">
             Search
           </button>
         </form>
         <select
-          className="w-fit rounded-xs p-3  text-sm bg-secondary-foreground"
+          className="w-fit rounded-md p-3  text-sm bg-secondary-foreground border-2 border-muted/10"
           value={Filter}
           onChange={(e) => setFilter(e.target.value)}
           required
@@ -65,28 +66,28 @@ function Blogtable({ posts }) {
       </div>
 
       <table className="w-full bg-secondary-foreground rounded-sm ">
-        <thead className="border-b-2 border-secondary/50 w-full">
+        <thead className="border-b-2 border-secondary/50 w-full ">
           <tr className="">
-            <th className="p-2 text-start font-semibold font-roboto">Title</th>
-            <th className="p-2 text-start font-semibold font-roboto">Date</th>
-            <th className="p-2 text-start font-semibold font-roboto">
+            <th className="pl-4 p-2 text-start font-medium font-poppins text-sm">Title</th>
+            <th className="p-2 text-start font-medium font-poppins text-sm">Date</th>
+            <th className="p-2 text-start font-medium font-poppins text-sm">
               Category
             </th>
-            <th className="p-2 text-start font-roboto">Action</th>
+            <th className="p-2 text-start font-medium font-poppins text-sm">Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredPost.map((unique) => {
             return (
-              <tr className="border-b-2 border-secondary/50" key={unique.id}>
-                <td className=" p-2 text-start font-poppins text-sm font-medium hover:text-muted transition-colors">
+              <tr className="border-t-2 border-muted/20" key={unique.id}>
+                <td className="pl-4 p-2 text-start font-poppins text-sm font-medium hover:text-muted transition-colors">
                   <Link href={`/blog/${unique.id}`} > {unique.title.split(0, 100)}</Link>
                 </td>
                 <td className=" p-2 text-start text-muted font-roboto text-sm">
                   {new Date(unique.createdAt).toDateString()}
                 </td>
                 <td className=" p-2 text-start">
-                  <span className="font-roboto text-sm p-1 px-3 rounded-full bg-accent">
+                  <span className="font-sans text-xs p-1 px-3 rounded-full bg-accent/80 text-purple-200">
                     {unique.category}
                   </span>
                 </td>
@@ -99,7 +100,7 @@ function Blogtable({ posts }) {
                       <Pencil className="h-4 w-4 stroke-3" /> Edit
                     </button>
                     <button
-                      className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-primary px-2"
+                      className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-accent px-2"
                       onClick={async () => {
                         setSubmitting(true);
                         try {

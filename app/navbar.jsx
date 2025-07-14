@@ -37,7 +37,7 @@ function Navbar() {
             <Image src={tw} alt="logo" className="h-8 w-8"></Image>
             <div>
               <p className="text-white text-lg font-bold font-roboto">
-                TREND<span className="text-secondary">WISE</span>
+                TREND<span className="text-muted">WISE</span>
               </p>
               <p className="text-xs font-roboto -mt-1">AI meets trends.</p>
             </div>
@@ -121,7 +121,7 @@ function Navbar() {
           <Image src={tw} alt="logo" className="h-8 w-8"></Image>
           <div>
             <p className="text-white text-lg font-bold font-roboto">
-              TREND<span className="text-secondary">WISE</span>
+              TREND<span className="text-muted">WISE</span>
             </p>
             <p className="text-xs font-roboto -mt-1">AI meets trends.</p>
           </div>
@@ -138,12 +138,7 @@ function Navbar() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               </HoverCardTrigger>
-              <HoverCardContent>
-               
-                <div
-                  className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-xl px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]"
-                  key={session?.user?.name}
-                >
+              <HoverCardContent className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-xl px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]">
                   <Avatar className="h-10 w-10">
                     <AvatarImage
                       src={session?.user?.image ?? undefined}
@@ -157,7 +152,6 @@ function Navbar() {
                     </p>
                     <span className="text-xs ">{session?.user?.email}</span>
                   </div>
-                </div>
               </HoverCardContent>
             </HoverCard>
           )}
@@ -176,9 +170,9 @@ function Navbar() {
               Sign In
             </button>
           )}
-          <Sheet className="md:hidden">
+          <Sheet className="md:hidden border-background">
             <SheetTrigger className="md:hidden">
-              <MenuIcon className="mr-4 p-1 h-8 w-8 bg-secondary/30 rounded-md stroke-secondary" />
+              <MenuIcon className="mr-4 p-1 h-9 w-9 bg-secondary/20 rounded-full stroke-secondary border-2 border-secondary" />
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px]">
               <SheetHeader>
@@ -188,7 +182,7 @@ function Navbar() {
                     <Image src={tw} alt="logo" className="h-8 w-8"></Image>
                     <div>
                       <p className="text-white text-lg font-bold font-roboto">
-                        TREND<span className="text-secondary">WISE</span>
+                        TREND<span className="text-muted">WISE</span>
                       </p>
                       <p className="text-xs font-roboto -mt-1">
                         AI meets trends.
