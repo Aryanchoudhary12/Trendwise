@@ -161,7 +161,7 @@ function Navbar() {
               className="flex gap-2 p-2 rounded-md  bg-lime-300 text-black font-poppins w-32 justify-center items-center font-medium text-sm"
               onClick={signOut}
             >
-              <LogOut className="size-4" />
+              <LogOutIcon className="size-4" />
               Sign Out
             </button>
           ) : (
