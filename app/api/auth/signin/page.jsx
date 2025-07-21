@@ -16,7 +16,7 @@ function SignInForm() {
         <div className="w-full flex justify-start items-center gap-1">
           <Image src={tw} alt="logo" className="h-12 w-12" />
           <div>
-            <p className="text-white text-xl font-bold font-roboto">
+            <p className="text-white text-xl font-bold font-goldman">
               TREND<span className="text-muted">WISE</span>
             </p>
             <p className="text-sm font-roboto -mt-1">AI meets trends.</p>

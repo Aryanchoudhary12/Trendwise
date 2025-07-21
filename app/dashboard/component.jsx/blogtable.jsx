@@ -87,7 +87,7 @@ function Blogtable({ posts }) {
                   {new Date(unique.createdAt).toDateString()}
                 </td>
                 <td className=" p-2 text-start">
-                  <span className="font-sans text-xs p-1 px-3 rounded-full bg-accent/80 text-purple-200">
+                  <span className="font-sans text-sm text-purple-200">
                     {unique.category}
                   </span>
                 </td>

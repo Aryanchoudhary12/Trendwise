@@ -1,7 +1,13 @@
 "use client";
 import { useState } from "react";
 import Card from "@/components/ui/card";
-
+import { FaThLarge } from "react-icons/fa";
+import { FaPlane } from "react-icons/fa";
+import { BsCupHotFill } from "react-icons/bs";
+import { FaBookOpenReader } from "react-icons/fa6";
+import { MdSportsBasketball } from "react-icons/md";
+import { MdMovieFilter } from "react-icons/md";
+import { FaBoxOpen } from "react-icons/fa";
 import {
   Pagination,
   PaginationContent,
@@ -34,24 +40,31 @@ export default function PostsListClient({ posts, users }) {
   const category = [
     {
       name: "All",
+      icon: <FaThLarge className="h-12 w-12 fill-lime-300" />,
     },
     {
       name: "Travel",
+      icon: <FaPlane className="h-12 w-12 fill-lime-300" />,
     },
     {
       name: "Lifestyle",
+      icon: <BsCupHotFill className="h-12 w-12 fill-lime-300" />,
     },
     {
       name: "Educational",
+      icon: <FaBookOpenReader className="h-12 w-12 fill-lime-300" />,
     },
     {
       name: "Sports",
+      icon: <MdSportsBasketball className="h-12 w-12 fill-lime-300" />,
     },
     {
       name: "Entertainment",
+      icon: <MdMovieFilter className="h-12 w-12 fill-lime-300" />,
     },
     {
       name: "Other",
+      icon: <FaBoxOpen className="h-12 w-12 fill-lime-300" />,
     },
   ];
 
@@ -74,11 +87,14 @@ export default function PostsListClient({ posts, users }) {
           return (
             <div key={category.name} className="h-fit w-fit">
               <button
-                className={`p-2 px-4 rounded-full ${
-                  searchInput == category.name ? "bg-button" : "bg-muted/70"
+                className={`flex flex-col items-center justify-center p-4 gap-2 rounded-md bg-secondary-foreground text-sm h-20 w-28 ${
+                  searchInput == category.name
+                    ? "border bg-gradient-to-br from-white/20 via-transparent to-white/10"
+                    : ""
                 }`}
                 onClick={() => setSearchInput(category.name)}
               >
+                {category.icon}
                 {category.name}
               </button>
             </div>
@@ -91,6 +107,10 @@ export default function PostsListClient({ posts, users }) {
             <h1 className="font-black text-3xl font-poppins">
               Latest <span className="pl-2">Posts</span>.
             </h1>
+            <p className="mt-2 font-poppins text-sm text-gray-300">
+              Browse all latest posts created our users including articles, updates, and
+              more.
+            </p>
           </div>
         </div>
 
@@ -169,6 +189,9 @@ export default function PostsListClient({ posts, users }) {
             <h1 className="font-black text-3xl font-poppins">
               Our <span className="pl-2">Users</span>.
             </h1>
+            <p className="mt-2 font-poppins text-sm text-gray-300">
+            Browse all our current users.
+          </p>
           </div>
         </div>
         <div className="mt-4 mb-10">

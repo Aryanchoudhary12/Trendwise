@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import tw from "@/public/tw.png";
+
 import {
   Sheet,
   SheetContent,
@@ -36,7 +37,7 @@ function Navbar() {
           <div className="h-16 w-full flex justify-center items-center gap-1">
             <Image src={tw} alt="logo" className="h-8 w-8"></Image>
             <div>
-              <p className="text-white text-lg font-bold font-roboto">
+              <p className="text-white text-lg font-bold font-goldman">
                 TREND<span className="text-muted">WISE</span>
               </p>
               <p className="text-xs font-roboto -mt-1">AI meets trends.</p>
@@ -47,13 +48,13 @@ function Navbar() {
           <ul className="bg-secondary-foreground/80 flex flex-col items-start justify-center gap-x-4 w-full rounded-xs">
             <Link href="/" passHref className="w-full">
               <li
-                className={`flex items-center p-2 w-full  rounded-xs cursor-pointer transition-colors hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold ${
-                  currentpath === "/" ? " text-secondary" : " text-white"
+                className={`flex items-center p-3 w-full  rounded-xs cursor-pointer transition-colors hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
+                  currentpath === "/" ? " text-lime-300" : " text-white"
                 }`}
               >
                 <ChevronsRight
                   className={`h-4 w-4 stroke-3 ${
-                    currentpath === "/" ? "stroke-secondary" : "stroke-white"
+                    currentpath === "/" ? "stroke-lime-300" : "stroke-white"
                   }`}
                 />
                 HOME
@@ -62,16 +63,16 @@ function Navbar() {
 
             <Link href="/dashboard" passHref className="w-full">
               <li
-                className={`flex items-center p-2 w-full rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold ${
+                className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
                   currentpath === "/dashboard"
-                    ? " text-secondary "
+                    ? " text-lime-300 "
                     : " text-white"
                 }`}
               >
                 <ChevronsRight
                   className={`h-4 w-4 stroke-3 ${
                     currentpath === "/dashboard"
-                      ? "stroke-secondary"
+                      ? "stroke-lime-300"
                       : "stroke-white"
                   }`}
                 />
@@ -80,13 +81,13 @@ function Navbar() {
             </Link>
             <Link href="/new" passHref className="w-full">
               <li
-                className={`flex items-center p-2 w-full rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold ${
-                  currentpath === "/new" ? " text-secondary " : " text-white"
+                className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
+                  currentpath === "/new" ? " text-lime-300 " : " text-white"
                 }`}
               >
                 <ChevronsRight
                   className={`h-4 w-4 stroke-3 ${
-                    currentpath === "/new" ? "stroke-secondary" : "stroke-white"
+                    currentpath === "/new" ? "stroke-lime-300" : "stroke-white"
                   }`}
                 />
                 POST BLOGS
@@ -94,7 +95,7 @@ function Navbar() {
             </Link>
             {session ? (
               <ul
-                className="w-full `flex items-center p-2 rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold"
+                className="w-full `flex items-center p-3 rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
                 onClick={signOut}
               >
                 <li className=" text-white flex gap-2 justify-start items-center">
@@ -104,7 +105,7 @@ function Navbar() {
               </ul>
             ) : (
               <ul
-                className="`flex items-center p-2 w-full rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold"
+                className="`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
                 onClick={signIn}
               >
                 <li className=" text-white flex gap-2 justify-start items-center">
@@ -120,7 +121,7 @@ function Navbar() {
         <div className="flex items-center justify-center gap-2 pl-3 md:hidden">
           <Image src={tw} alt="logo" className="h-8 w-8"></Image>
           <div>
-            <p className="text-white text-lg font-bold font-roboto">
+            <p className="text-white text-lg font-bold font-goldman">
               TREND<span className="text-muted">WISE</span>
             </p>
             <p className="text-xs font-roboto -mt-1">AI meets trends.</p>
@@ -139,40 +140,42 @@ function Navbar() {
                 </Avatar>
               </HoverCardTrigger>
               <HoverCardContent className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-xl px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage
-                      src={session?.user?.image ?? undefined}
-                      className="rounded-full animate-none"
-                    />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col justify-start items-start">
-                    <p className="text-white font-poppins font-medium text-base">
-                      {session?.user?.name ?? undefined}
-                    </p>
-                    <span className="text-xs ">{session?.user?.email}</span>
-                  </div>
+                <Avatar className="h-10 w-10">
+                  <AvatarImage
+                    src={session?.user?.image ?? undefined}
+                    className="rounded-full animate-none"
+                  />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col justify-start items-start">
+                  <p className="text-white font-poppins font-medium text-base">
+                    {session?.user?.name ?? undefined}
+                  </p>
+                  <span className="text-xs ">{session?.user?.email}</span>
+                </div>
               </HoverCardContent>
             </HoverCard>
           )}
           {session ? (
             <button
-              className="flex gap-1 p-2 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-32 justify-center items-center  text-sm"
+              className="flex gap-2 p-2 rounded-md  bg-lime-300 text-black font-poppins w-32 justify-center items-center font-medium text-sm"
               onClick={signOut}
             >
+              <LogOut className="size-4" />
               Sign Out
             </button>
           ) : (
             <button
-              className="flex gap-1 p-2 rounded-full  bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 font-poppins w-32 justify-center items-center  text-sm"
+              className="flex gap-2 p-2 rounded-md  bg-lime-300 text-black font-poppins w-32 justify-center items-center font-medium text-sm"
               onClick={signIn}
             >
+              <LogIn className="size-4" />
               Sign In
             </button>
           )}
           <Sheet className="md:hidden border-background">
             <SheetTrigger className="md:hidden">
-              <MenuIcon className="mr-4 p-1 h-9 w-9 bg-secondary/20 rounded-full stroke-secondary border-2 border-secondary" />
+              <MenuIcon className="mr-4 p-1 h-9 w-9  l stroke-lime-300 " />
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px]">
               <SheetHeader>
@@ -181,7 +184,7 @@ function Navbar() {
                   <div className="flex items-center justify-center gap-2 pl-3 md:hidden">
                     <Image src={tw} alt="logo" className="h-8 w-8"></Image>
                     <div>
-                      <p className="text-white text-lg font-bold font-roboto">
+                      <p className="text-white text-lg font-bold font-goldman">
                         TREND<span className="text-muted">WISE</span>
                       </p>
                       <p className="text-xs font-roboto -mt-1">
@@ -194,16 +197,16 @@ function Navbar() {
                   <span className="bg-secondary-foreground/80 flex flex-col items-start justify-center gap-x-4 w-full rounded-xs mt-6">
                     <Link href="/" passHref className="w-full">
                       <li
-                        className={`flex items-center p-2 w-full  rounded-xs cursor-pointer transition-colors hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold ${
+                        className={`flex items-center p-3 w-full  rounded-xs cursor-pointer transition-colors hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
                           currentpath === "/"
-                            ? " text-secondary"
+                            ? " text-lime-300"
                             : " text-white"
                         }`}
                       >
                         <ChevronsRight
                           className={`h-4 w-4 stroke-3 ${
                             currentpath === "/"
-                              ? "stroke-secondary"
+                              ? "stroke-lime-300"
                               : "stroke-white"
                           }`}
                         />
@@ -213,16 +216,16 @@ function Navbar() {
 
                     <Link href="/dashboard" passHref className="w-full">
                       <li
-                        className={`flex items-center p-2 w-full rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold ${
+                        className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
                           currentpath === "/dashboard"
-                            ? " text-secondary "
+                            ? " text-lime-300 "
                             : " text-white"
                         }`}
                       >
                         <ChevronsRight
                           className={`h-4 w-4 stroke-3 ${
                             currentpath === "/dashboard"
-                              ? "stroke-secondary"
+                              ? "stroke-lime-300"
                               : "stroke-white"
                           }`}
                         />
@@ -231,16 +234,16 @@ function Navbar() {
                     </Link>
                     <Link href="/new" passHref className="w-full">
                       <li
-                        className={`flex items-center p-2 w-full rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold ${
+                        className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
                           currentpath === "/new"
-                            ? " text-secondary "
+                            ? " text-lime-300 "
                             : " text-white"
                         }`}
                       >
                         <ChevronsRight
                           className={`h-4 w-4 stroke-3 ${
                             currentpath === "/new"
-                              ? "stroke-secondary"
+                              ? "stroke-lime-300"
                               : "stroke-white"
                           }`}
                         />
@@ -249,7 +252,7 @@ function Navbar() {
                     </Link>
                     {session ? (
                       <span
-                        className="w-full `flex items-center p-2 rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold"
+                        className="w-full `flex items-center p-3 rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
                         onClick={signOut}
                       >
                         <li className=" text-white flex gap-2 justify-start items-center">
@@ -259,7 +262,7 @@ function Navbar() {
                       </span>
                     ) : (
                       <span
-                        className="`flex items-center p-2 w-full rounded-xs cursor-pointer hover:bg-secondary/40 text-sm font-roboto gap-1 font-semibold"
+                        className="`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
                         onClick={signIn}
                       >
                         <li className=" text-white flex gap-2 justify-start items-center">

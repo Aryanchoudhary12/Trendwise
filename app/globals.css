@@ -8,36 +8,40 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary:var(--primary);
-  --color-secondary:var(--secondary);
-  --color-muted:var(--muted);
-  --color-muted-foreground:var(--muted-foreground);
-  --color-button:var(--button);
-  --color-accent:var(--accent);
-  --color-secondary-foreground:var(--secondary-foreground)
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-button: var(--button);
+  --color-accent: var(--accent);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --font-goldman:var(--goldman)
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
 
-    --background: #222831;
+    --background: #141516;
     --foreground: #ededed;
 
     --muted: #F79B72;
-    --muted-foreground: #D1A980;
-     --primary: #ae9c80;
+    --muted-foreground: #393E46;
+    --primary: #ae9c80;
     --secondary: #DFD0B8;
     --button: #FE7743;
-    --accent:#9929EA;
-    --secondary-foreground: #393E46;
+    --accent: #9929EA;
+    --secondary-foreground: #1B262C;
   }
 }
-.font-roboto{
-  font-family: var(--roboto-condensed),sans-serif;
+
+.font-roboto {
+  font-family: var(--roboto-condensed), sans-serif;
 }
-.font-poppins{
-  font-family: var(--poppins),sans-serif;
+
+.font-poppins {
+  font-family: var(--poppins), sans-serif;
 }
+
 body {
   background: var(--background);
   color: var(--foreground);

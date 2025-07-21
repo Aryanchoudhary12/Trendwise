@@ -59,14 +59,21 @@ async function Dashboard() {
         <div className="p-2">
           <div className="flex justify-start items-center gap-2 mt-4">
             <Inbox className=" h-7 w-7 rounded-md stroke-secondary stroke-1"></Inbox>
-              <h1 className=" text-2xl font-poppins font-semibold">Posts .</h1>
+            <h1 className=" text-2xl font-poppins font-semibold">Posts.</h1>
           </div>
+          <p className="mt-2 font-poppins text-sm text-gray-300">
+            Browse all posts created by you including articles, updates,
+            and more.
+          </p>
         </div>
         <Blogtable posts={post} />
         <div className="flex justify-start items-center gap-1 p-2 my-2">
           <MessageCircleCode className=" h-7 w-7 rounded-md stroke-secondary stroke-1" />
           <h1 className=" text-2xl font-poppins font-semibold">Comments .</h1>
         </div>
+        <p className="mb-2 font-poppins text-sm text-gray-300 px-2">
+            Browse all your comments various posts.
+        </p>
         <Commenttable comments={comment} />
       </div>
     </div>
