@@ -27,9 +27,8 @@ async function Dashboard() {
       post: true,
     },
   });
-  const user = await prisma.user.findMany({
-    where: { id: session?.user?.id ?? undefined},
-    select: { createdAt: true },
+  const user = await prisma.user.findUnique({
+    where: { id: session?.user?.id ?? undefined },
   });
 
   const postCount = await prisma.post.count({
