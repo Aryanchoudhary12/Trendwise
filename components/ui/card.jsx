@@ -26,10 +26,10 @@ function Card({
           height={200}
         />
         <p className="text-base font-medium font-poppins mt-1">{title}</p>
-        <div className="flex flex-row justify-between w-full h-fit items-center gap-4 border-b-2 border-muted-foreground py-2">
-          <span className="flex justify-center items-center text-xs font-roboto font-medium p-1 px-3 rounded-sm bg-button w-fit text-black">
+        <div className="flex flex-row justify-between w-full h-fit items-center gap-4 ">
+          <button className="px-4 py-0.5  border border-black dark:border-white uppercase bg-white text-black transition duration-200 text-xs shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] ">
             {category}
-          </span>
+          </button>
           {!published && (
             <div className="flex justify-start items-center gap-1 font-roboto text-xs text-blue-200  rounded-sm bg-blue-300/20 p-1 px-2 ">
               <Sparkles className="h-3 w-3" /> Groq AI
@@ -43,11 +43,13 @@ function Card({
           <Calendar1Icon className="size-3 stroke-secondary" />
           <p className="text-xs font-roboto text-secondary pt-1">{time}</p>
         </div>
+
         <button
-          className="flex justify-center items-center gap-1 p-2 px-4 rounded-md font-medium text-black bg-lime-300 transition-colors font-roboto text-sm"
+          className="px-8 py-2 rounded-md relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 w-full"
           onClick={() => router.push(`/blog/${id}`)}
         >
-          Continue Reading <MdDoubleArrow className="size-4"/>
+          <div className="absolute inset-x-0 h-px w-3/4 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+          <span className="relative z-20">Continue reading</span>
         </button>
       </div>
     </div>

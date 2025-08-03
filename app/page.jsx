@@ -19,17 +19,15 @@ export default async function Home() {
     <div className="relative">
       <img src="/gradient.jpg" alt="" className="relative h-[40rem] sm:h-[32rem] w-full object-cover"/>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2  place-items-center absolute top-10 p-4 gap-4 bg-black/20">
+      <div className="grid grid-cols-1 sm:grid-cols-2  place-items-center absolute top-0 p-4 gap-4 bg-black/20 h-[40rem] sm:h-[32rem]">
         <div className="flex flex-col justify-center items-center sm:items-start p-4">
-          <span className="flex justify-center items-center gap-1  font-bold font-goldman py-2 text-2xl md:text-3xl lg:text-5xl text-center sm:text-left">
+          <span className="flex justify-center items-center gap-1  font-bold font-goldman py-2 text-3xl md:text-4xl lg:text-5xl text-center sm:text-left">
             AI-Powered Insights with TRENDWISE
           </span>
           
-          <p className="text-sm font-poppins font-normal mt-4 text-center sm:text-left w-5/6 lg:w-4/6  text-gray-300 xl:text-base">
+          <p className="text-sm font-poppins font-normal mt-2 text-center sm:text-left w-5/6   text-gray-300 ">
             Stay ahead with the latest stories, viral trends, and insightful
-            blogs — all powered by artificial intelligence. Our smart engine
-            scans thousands of sources to bring you real-time, personalized
-            content that matters.
+            blogs — all powered by artificial intelligence.
           </p>
           {session ? (
             <Link href="/dashboard">
@@ -39,7 +37,7 @@ export default async function Home() {
             </Link>
           ) : (
             <Link href="/api/auth/signin">
-              <button className="flex gap-1 p-3 rounded-full backdrop-blur-lg border border-slate-200/50 bg-gradient-to-br from-white/20 via-transparent to-white/20 w-40 justify-center items-center mt-4 text-sm">
+              <button className="flex gap-1 p-3 rounded-full backdrop-blur-lg border border-slate-200/50 bg-gradient-to-br from-white/20 via-transparent to-white/20 w-40 justify-center items-center mt-4 text-sm font-poppins text-white">
                 Explore now
               </button>
             </Link>

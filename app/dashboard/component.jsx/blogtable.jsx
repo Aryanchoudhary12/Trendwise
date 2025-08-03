@@ -94,13 +94,13 @@ function Blogtable({ posts }) {
                 <td className=" p-2 text-start">
                   <div className="flex flex-wrap gap-2 w-fit">
                     <button
-                      className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-button px-2"
+                      className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-white text-gray-800 px-2"
                       onClick={() => router.push(`/blog/edit/${unique.id}`)}
                     >
-                      <Pencil className="h-4 w-4 stroke-3" /> Edit
+                      <Pencil className="h-4 w-4 stroke-2" /> Edit
                     </button>
                     <button
-                      className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-accent px-2"
+                      className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-red-500 px-2"
                       onClick={async () => {
                         setSubmitting(true);
                         try {

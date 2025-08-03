@@ -61,7 +61,7 @@ function Commenttable({ comments }) {
                 </td>
                 <td className=" p-2 text-start">
                   <button
-                    className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-accent px-2"
+                    className="flex justify-center items-center gap-1 p-2 rounded-sm text-sm bg-red-500 px-2"
                     onClick={async () => {
                       setSubmitting(true);
                       try {

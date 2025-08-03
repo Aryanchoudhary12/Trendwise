@@ -37,10 +37,10 @@ function Navbar() {
           <div className="h-16 w-full flex justify-center items-center gap-1">
             <Image src={tw} alt="logo" className="h-8 w-8"></Image>
             <div>
-              <p className="text-white text-lg font-bold font-goldman">
-                TREND<span className="text-muted">WISE</span>
+              <p className="text-white text-base font-bold font-goldman">
+                TREND<span className="text-primary">WISE</span>
               </p>
-              <p className="text-xs font-roboto -mt-1">AI meets trends.</p>
+              <p className="text-xs font-poppins -mt-1">AI meets trends.</p>
             </div>
           </div>
         </div>
@@ -48,13 +48,13 @@ function Navbar() {
           <ul className="bg-secondary-foreground/80 flex flex-col items-start justify-center gap-x-4 w-full rounded-xs">
             <Link href="/" passHref className="w-full">
               <li
-                className={`flex items-center p-3 w-full  rounded-xs cursor-pointer transition-colors hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
-                  currentpath === "/" ? " text-lime-300" : " text-white"
+                className={`flex items-center p-3 w-full  rounded-xs cursor-pointer transition-colors hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium ${
+                  currentpath === "/" ? " text-muted bg-teal-800 border-r-4 border-r-muted" : " text-white"
                 }`}
               >
                 <ChevronsRight
                   className={`h-4 w-4 stroke-3 ${
-                    currentpath === "/" ? "stroke-lime-300" : "stroke-white"
+                    currentpath === "/" ? "stroke-muted" : "stroke-white"
                   }`}
                 />
                 HOME
@@ -63,16 +63,16 @@ function Navbar() {
 
             <Link href="/dashboard" passHref className="w-full">
               <li
-                className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
+                className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium ${
                   currentpath === "/dashboard"
-                    ? " text-lime-300 "
+                    ? " text-muted bg-teal-800 border-r-4 border-r-muted"
                     : " text-white"
                 }`}
               >
                 <ChevronsRight
                   className={`h-4 w-4 stroke-3 ${
                     currentpath === "/dashboard"
-                      ? "stroke-lime-300"
+                      ? "stroke-muted"
                       : "stroke-white"
                   }`}
                 />
@@ -81,13 +81,13 @@ function Navbar() {
             </Link>
             <Link href="/new" passHref className="w-full">
               <li
-                className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
-                  currentpath === "/new" ? " text-lime-300 " : " text-white"
+                className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium ${
+                  currentpath === "/new" ? " text-muted bg-teal-800 border-r-4 border-r-muted" : " text-white"
                 }`}
               >
                 <ChevronsRight
                   className={`h-4 w-4 stroke-3 ${
-                    currentpath === "/new" ? "stroke-lime-300" : "stroke-white"
+                    currentpath === "/new" ? "stroke-muted" : "stroke-white"
                   }`}
                 />
                 POST BLOGS
@@ -95,7 +95,7 @@ function Navbar() {
             </Link>
             {session ? (
               <ul
-                className="w-full `flex items-center p-3 rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
+                className="w-full `flex items-center p-3 rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium"
                 onClick={signOut}
               >
                 <li className=" text-white flex gap-2 justify-start items-center">
@@ -105,7 +105,7 @@ function Navbar() {
               </ul>
             ) : (
               <ul
-                className="`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
+                className="`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium"
                 onClick={signIn}
               >
                 <li className=" text-white flex gap-2 justify-start items-center">
@@ -121,10 +121,10 @@ function Navbar() {
         <div className="flex items-center justify-center gap-2 pl-3 md:hidden">
           <Image src={tw} alt="logo" className="h-8 w-8"></Image>
           <div>
-            <p className="text-white text-lg font-bold font-goldman">
-              TREND<span className="text-muted">WISE</span>
+            <p className="text-white text-base font-bold font-goldman">
+              TREND<span className="text-primary">WISE</span>
             </p>
-            <p className="text-xs font-roboto -mt-1">AI meets trends.</p>
+            <p className="text-xs font-poppins -mt-1">AI meets trends.</p>
           </div>
         </div>
         <div className="flex items-center justify-center gap-2 md:mr-4">
@@ -158,24 +158,61 @@ function Navbar() {
           )}
           {session ? (
             <button
-              className="flex gap-2 p-2 rounded-md  bg-lime-300 text-black font-poppins w-32 justify-center items-center font-medium text-sm"
+              className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-sm font-medium leading-6  text-white inline-block"
               onClick={signOut}
             >
-              <LogOutIcon className="size-4" />
-              Sign Out
+              <span className="absolute inset-0 overflow-hidden rounded-full">
+                <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
+              </span>
+              <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-2 px-4 ring-1 ring-white/10 ">
+                <span>{`Sign Out`}</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M10.75 8.75L14.25 12L10.75 15.25"
+                  ></path>
+                </svg>
+              </div>
+              <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
             </button>
           ) : (
-            <button
-              className="flex gap-2 p-2 rounded-md  bg-lime-300 text-black font-poppins w-32 justify-center items-center font-medium text-sm"
-              onClick={signIn}
-            >
-              <LogIn className="size-4" />
-              Sign In
+            <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-sm font-medium leading-6  text-white inline-block" onClick={signIn}>
+              <span className="absolute inset-0 overflow-hidden rounded-full">
+                <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
+              </span>
+              <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-2 px-4 ring-1 ring-white/10 ">
+                <span>{`Sign In`}</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10.75 8.75L14.25 12L10.75 15.25"
+                  ></path>
+                </svg>
+              </div>
+              <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
             </button>
           )}
           <Sheet className="md:hidden border-background">
             <SheetTrigger className="md:hidden">
-              <MenuIcon className="mr-4 p-1 h-9 w-9  l stroke-lime-300 " />
+              <MenuIcon className="mr-4 p-1 h-9 w-9  l stroke-muted " />
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px]">
               <SheetHeader>
@@ -184,10 +221,10 @@ function Navbar() {
                   <div className="flex items-center justify-center gap-2 pl-3 md:hidden">
                     <Image src={tw} alt="logo" className="h-8 w-8"></Image>
                     <div>
-                      <p className="text-white text-lg font-bold font-goldman">
-                        TREND<span className="text-muted">WISE</span>
+                      <p className="text-white text-base font-bold font-goldman">
+                        TREND<span className="text-primary">WISE</span>
                       </p>
-                      <p className="text-xs font-roboto -mt-1">
+                      <p className="text-xs font-poppins -mt-1">
                         AI meets trends.
                       </p>
                     </div>
@@ -197,16 +234,14 @@ function Navbar() {
                   <span className="bg-secondary-foreground/80 flex flex-col items-start justify-center gap-x-4 w-full rounded-xs mt-6">
                     <Link href="/" passHref className="w-full">
                       <li
-                        className={`flex items-center p-3 w-full  rounded-xs cursor-pointer transition-colors hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
-                          currentpath === "/"
-                            ? " text-lime-300"
-                            : " text-white"
+                        className={`flex items-center p-3 w-full  rounded-xs cursor-pointer transition-colors hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium ${
+                          currentpath === "/" ? " text-muted bg-teal-800 border-r-4 border-r-muted" : " text-white"
                         }`}
                       >
                         <ChevronsRight
                           className={`h-4 w-4 stroke-3 ${
                             currentpath === "/"
-                              ? "stroke-lime-300"
+                              ? "stroke-muted"
                               : "stroke-white"
                           }`}
                         />
@@ -216,16 +251,16 @@ function Navbar() {
 
                     <Link href="/dashboard" passHref className="w-full">
                       <li
-                        className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
+                        className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium ${
                           currentpath === "/dashboard"
-                            ? " text-lime-300 "
+                            ? " text-muted bg-teal-800 border-r-4 border-r-muted"
                             : " text-white"
                         }`}
                       >
                         <ChevronsRight
                           className={`h-4 w-4 stroke-3 ${
                             currentpath === "/dashboard"
-                              ? "stroke-lime-300"
+                              ? "stroke-muted"
                               : "stroke-white"
                           }`}
                         />
@@ -234,16 +269,16 @@ function Navbar() {
                     </Link>
                     <Link href="/new" passHref className="w-full">
                       <li
-                        className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium ${
+                        className={`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium ${
                           currentpath === "/new"
-                            ? " text-lime-300 "
+                            ? " text-muted bg-teal-800 border-r-4 border-r-muted"
                             : " text-white"
                         }`}
                       >
                         <ChevronsRight
                           className={`h-4 w-4 stroke-3 ${
                             currentpath === "/new"
-                              ? "stroke-lime-300"
+                              ? "stroke-muted"
                               : "stroke-white"
                           }`}
                         />
@@ -252,7 +287,7 @@ function Navbar() {
                     </Link>
                     {session ? (
                       <span
-                        className="w-full `flex items-center p-3 rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
+                        className="w-full `flex items-center p-3 rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium"
                         onClick={signOut}
                       >
                         <li className=" text-white flex gap-2 justify-start items-center">
@@ -262,7 +297,7 @@ function Navbar() {
                       </span>
                     ) : (
                       <span
-                        className="`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-roboto gap-1 font-medium"
+                        className="`flex items-center p-3 w-full rounded-xs cursor-pointer hover:bg-muted-foreground text-sm font-poppins gap-1 font-medium"
                         onClick={signIn}
                       >
                         <li className=" text-white flex gap-2 justify-start items-center">

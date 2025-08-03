@@ -21,16 +21,15 @@
 @media (prefers-color-scheme: dark) {
   :root {
 
-    --background: #141516;
+    --background: #001021;
     --foreground: #ededed;
-
-    --muted: #F79B72;
-    --muted-foreground: #393E46;
-    --primary: #ae9c80;
+    --muted: #7AE2CF;
+    --muted-foreground: #1c4c56;
+    --primary: #2cb1ad;
     --secondary: #DFD0B8;
-    --button: #FE7743;
+    --button: #249c98;
     --accent: #9929EA;
-    --secondary-foreground: #1B262C;
+    --secondary-foreground: #022439;
   }
 }
 
