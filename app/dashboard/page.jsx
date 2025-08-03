@@ -9,7 +9,8 @@ import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { HiCalendarDateRange } from "react-icons/hi2";
 import { SiReactivex } from "react-icons/si";
-import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 async function Dashboard() {
   const session = await getServerSession(authOptions);
   const prisma = new PrismaClient();
@@ -51,13 +52,13 @@ async function Dashboard() {
               Personal <span className="text-primary">Information</span>
             </h1>
             <div className="mt-4 flex justify-center items-center gap-4 w-full">
-              <Image
-                src={user.image || "/oops.jpg"}
-                alt="userimage"
-                width={400}
-                height={400}
-                className="h-36 w-36 object-cover rounded-full"
-              ></Image>
+              <Avatar className="h-36 w-36 object-cover rounded-full">
+                <AvatarImage
+                  src={user.image ?? undefined}
+                  className="rounded-full animate-none"
+                />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
               <div className="flex flex-col justify-center items-start gap-2 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
