@@ -64,7 +64,7 @@ async function Dashboard() {
                   <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
                     <FaUser /> Username :
                   </div>
-                  <div className="font-medium font-inter p-2 rounded-md bg-base-200 w-full border border-base-content/10 text-sm pl-6">
+                  <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
                     {user.name}
                   </div>
                 </div>
@@ -72,7 +72,7 @@ async function Dashboard() {
                   <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
                     <MdEmail /> Email :
                   </div>
-                  <div className="font-medium font-inter p-2 rounded-md bg-base-200 w-full border border-base-content/10 text-sm pl-6">
+                  <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
                     {user.email}
                   </div>
                 </div>
@@ -88,7 +88,7 @@ async function Dashboard() {
                 <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
                   <HiCalendarDateRange /> Created At :
                 </div>
-                <div className="font-medium font-inter p-2 rounded-md bg-base-200 w-full border border-base-content/10 text-sm pl-6">
+                <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
                   {new Date(user.createdAt).toDateString()}
                 </div>
               </div>
@@ -96,7 +96,7 @@ async function Dashboard() {
                 <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
                   <SiReactivex /> Status :
                 </div>
-                <div className="font-medium font-inter p-2 rounded-md bg-base-200 w-full border border-base-content/10 text-sm pl-6 text-success">
+                <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6 text-success">
                   Active
                 </div>
               </div>
