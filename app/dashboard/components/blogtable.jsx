@@ -23,7 +23,7 @@ function Blogtable({ posts }) {
     <div className="flex flex-col gap-2 p-2">
       <Toaster />
       <div className="flex flex-wrap  gap-4 w-fit">
-        <form className="flex justify-center items-center p-1 rounded-md bg-secondary-foreground w-fit border-2 border-muted/10 active:outline-1 active:outline-muted/20">
+        <form className="flex justify-center items-center p-0.5 rounded-lg bg-secondary-foreground w-fit border-2 border-muted/10 active:outline-1 active:outline-muted/20">
           <input
             type="text"
             placeholder="Search post"
@@ -31,7 +31,7 @@ function Blogtable({ posts }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="p-2 rounded-md text-sm bg-button px-2">
+          <button className="p-2 rounded-md text-sm bg-button px-2 font-medium">
             Search
           </button>
         </form>
@@ -65,7 +65,7 @@ function Blogtable({ posts }) {
         </select>
       </div>
 
-      <table className="w-full bg-secondary-foreground rounded-sm ">
+      <table className="w-full bg-secondary-foreground rounded-sm mt-2">
         <thead className="border-b-2 border-secondary/50 w-full ">
           <tr className="">
             <th className="pl-4 p-2 text-start font-medium font-poppins text-sm">Title</th>

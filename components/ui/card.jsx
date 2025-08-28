@@ -45,7 +45,7 @@ function Card({
         </div>
 
         <button
-          className="px-8 py-2 rounded-md relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 w-full"
+          className="px-8 py-2 rounded-md relative bg-muted text-background text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 w-full"
           onClick={() => router.push(`/blog/${id}`)}
         >
           <div className="absolute inset-x-0 h-px w-3/4 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />

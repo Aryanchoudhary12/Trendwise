@@ -15,21 +15,21 @@
   --color-button: var(--button);
   --color-accent: var(--accent);
   --color-secondary-foreground: var(--secondary-foreground);
-  --font-goldman:var(--goldman)
+  --font-goldman: var(--goldman)
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
 
-    --background: #001021;
+    --background: #212A3E;
     --foreground: #ededed;
-    --muted: #7AE2CF;
-    --muted-foreground: #1c4c56;
-    --primary: #2cb1ad;
-    --secondary: #DFD0B8;
-    --button: #249c98;
-    --accent: #9929EA;
-    --secondary-foreground: #022439;
+    --muted: #9BA4B5;
+    --muted-foreground: #1e7cab;
+    --primary: #D7D7D7;
+    --secondary: #DCDCDC;
+    --button: #ED775A;
+    --accent: #349cd4;
+    --secondary-foreground: #394867;
   }
 }
 

@@ -1,9 +1,9 @@
 import React from "react";
-import Blogtable from "./component.jsx/blogtable";
+import Blogtable from "./components/blogtable";
 import { PrismaClient } from "@/lib/generated/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOption";
-import Commenttable from "./component.jsx/commenttable";
+import Commenttable from "./components/commenttable";
 import { Inbox, MessageCircleCode } from "lucide-react";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -46,64 +46,67 @@ async function Dashboard() {
   return (
     <div>
       <div className="p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="p-4 flex flex-col justify-center items-start ">
-            <h1 className="text-2xl font-poppins font-bold">
+        <div className="grid grid-cols-1 lg:grid-cols-5">
+          <div className="p-4 flex flex-col justify-center items-start col-span-3">
+            <h1 className="text-xl font-poppins font-bold uppercase">
               Personal <span className="text-primary">Information</span>
             </h1>
-            <div className="mt-4 flex justify-center items-center gap-4 w-full">
+            <div className="mt-4 flex flex-col justify-center lg:flex-row items-center gap-4 w-full">
               <Avatar className="h-36 w-36 object-cover rounded-full">
                 <AvatarImage
-                  src={user.image ?? undefined}
+                  src={user?.image ?? "user.png"}
                   className="rounded-full animate-none"
                 />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               <div className="flex flex-col justify-center items-start gap-2 w-full">
-                <div className="flex flex-col gap-2 w-full">
-                  <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
-                    <FaUser /> Username :
+                <div className="flex flex-col gap-1 w-full">
+                  <div className="flex  items-center gap-1.5 font-medium font-poppins text-xs ml-1">
+                    <FaUser className="size-2.5" /> Username :
                   </div>
-                  <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
-                    {user.name}
+                  <div className="font-medium font-inter p-2.5 rounded-full bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
+                    {user?.name}
                   </div>
                 </div>
-                <div className="flex flex-col gap-2 w-full">
-                  <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
-                    <MdEmail /> Email :
+                <div className="flex flex-col gap-1 w-full">
+                  <div className="flex  items-center gap-1.5 font-medium font-poppins text-xs ml-1">
+                    <MdEmail className="size-3" /> Email :
                   </div>
-                  <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
-                    {user.email}
+                  <div className="font-medium font-inter p-2.5 rounded-full bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
+                    {user?.email}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="p-4">
-            <h1 className="text-2xl font-poppins font-bold">
+          <div className="p-4 col-span-2">
+            <h1 className="text-xl font-poppins font-bold uppercase">
               Account <span className="text-primary">Details</span>
             </h1>
             <div className="flex flex-col justify-center items-start gap-2 w-full mt-4">
-              <div className="flex flex-col gap-2 w-full">
-                <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
+              <div className="flex flex-col gap-1 w-full">
+                <div className="flex  items-center gap-1.5 font-medium font-poppins text-xs ml-1">
                   <HiCalendarDateRange /> Created At :
                 </div>
-                <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
-                  {new Date(user.createdAt).toDateString()}
+                <div className="font-medium font-inter p-2.5 rounded-full bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6">
+                  {new Date(user?.createdAt).toDateString()}
                 </div>
               </div>
-              <div className="flex flex-col gap-2 w-full">
-                <div className="flex  items-center gap-2 font-semibold font-inter text-base ml-1">
-                  <SiReactivex /> Status :
+              <div className="flex flex-col gap-1 w-full">
+                <div className="flex  items-center gap-1.5 font-medium font-poppins text-xs ml-1">
+                  <SiReactivex className="size-2.5" /> Status :
                 </div>
-                <div className="font-medium font-inter p-2 rounded-md bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6 text-success">
+                <div className="font-medium font-inter p-2.5 rounded-full bg-secondary-foreground w-full border border-muted-foreground text-sm pl-6 text-green-300">
                   Active
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-start gap-4 p-2">
+        <h1 className="pl-2 text-2xl font-bold font-poppins mt-4 uppercase">
+          Dashboard <span className="text-muted">Overview</span>
+        </h1>
+        <div className="flex items-center justify-start gap-4 p-2 mt-2">
           <div className="flex justify-center items-center gap-2 p-3 bg-secondary-foreground rounded-md border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]">
             <Inbox className="h-8 w-8 stroke-secondary stroke-1" />
             <div className="flex flex-col gap-1">

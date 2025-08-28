@@ -40,31 +40,31 @@ export default function PostsListClient({ posts, users }) {
   const category = [
     {
       name: "All",
-      icon: <FaThLarge className="h-12 w-12 fill-lime-300" />,
+      icon: <FaThLarge className="h-12 w-12 fill-primary" />,
     },
     {
       name: "Travel",
-      icon: <FaPlane className="h-12 w-12 fill-lime-300" />,
+      icon: <FaPlane className="h-12 w-12 fill-primary" />,
     },
     {
       name: "Lifestyle",
-      icon: <BsCupHotFill className="h-12 w-12 fill-lime-300" />,
+      icon: <BsCupHotFill className="h-12 w-12 fill-primary" />,
     },
     {
       name: "Educational",
-      icon: <FaBookOpenReader className="h-12 w-12 fill-lime-300" />,
+      icon: <FaBookOpenReader className="h-12 w-12 fill-primary" />,
     },
     {
       name: "Sports",
-      icon: <MdSportsBasketball className="h-12 w-12 fill-lime-300" />,
+      icon: <MdSportsBasketball className="h-12 w-12 fill-primary" />,
     },
     {
       name: "Entertainment",
-      icon: <MdMovieFilter className="h-12 w-12 fill-lime-300" />,
+      icon: <MdMovieFilter className="h-12 w-12 fill-primary" />,
     },
     {
       name: "Other",
-      icon: <FaBoxOpen className="h-12 w-12 fill-lime-300" />,
+      icon: <FaBoxOpen className="h-12 w-12 fill-primary" />,
     },
   ];
 
@@ -73,23 +73,23 @@ export default function PostsListClient({ posts, users }) {
       <form action="" className="flex justify-center gap-2 mt-10 ">
         <input
           type="text"
-          className="p-3 bg-secondary-foreground text-sm rounded-sm w-60 outline-none "
+          className="p-3 px-4 bg-secondary-foreground border border-muted/10 text-sm rounded-sm w-80 outline-none "
           placeholder="Search for blogs"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button className="p-3 text-sm rounded-sm bg-button" type="submit">
+        <button className="p-3 px-4 font-poppins  text-sm rounded-sm font-medium bg-button" type="submit">
           Search
         </button>
       </form>
-      <div className="flex flex-wrap gap-4 justify-center mt-4 px-2">
+      <div className="flex flex-wrap gap-4 justify-center mt-10 px-2">
         {category.map((category) => {
           return (
             <div key={category.name} className="h-fit w-fit">
               <button
                 className={`flex flex-col items-center justify-center p-4 gap-2 rounded-md bg-secondary-foreground text-sm h-20 w-28 ${
                   searchInput == category.name
-                    ? "border bg-gradient-to-br from-white/20 via-transparent to-white/10"
+                    ? "border-2 border-muted bg-gradient-to-br from-muted/20 via-transparent to-muted/10"
                     : ""
                 }`}
                 onClick={() => setSearchInput(category.name)}
@@ -104,10 +104,10 @@ export default function PostsListClient({ posts, users }) {
       <div className="p-4 mt-2">
         <div className="flex justify-start items-center gap-2">
           <div className="mb-2">
-            <h1 className="font-black text-3xl font-poppins">
-              Latest <span className="pl-2">Posts</span>.
+            <h1 className="font-black text-3xl font-poppins uppercase">
+              Latest <span className="pl-2">Posts</span>
             </h1>
-            <p className="mt-2 font-poppins text-sm text-gray-300">
+            <p className=" font-poppins text-sm text-gray-300">
               Browse all latest posts created our users including articles, updates, and
               more.
             </p>
@@ -152,7 +152,7 @@ export default function PostsListClient({ posts, users }) {
                     <button
                       className={`${
                         currentPage === i
-                          ? "font-bold text-white px-2 bg-primary rounded-full"
+                          ? "font-bold text-white px-2 bg-button rounded-full"
                           : "text-slate-50 hover:bg-muted hover:text-black px-2 font-semibold rounded-full"
                       }`}
                       onClick={() => setCurrentPage(i)}
@@ -186,10 +186,10 @@ export default function PostsListClient({ posts, users }) {
         )}
         <div className="flex justify-start items-center gap-2 mt-4">
           <div className="mb-1">
-            <h1 className="font-black text-3xl font-poppins">
-              Our <span className="pl-2">Users</span>.
+            <h1 className="font-black text-3xl font-poppins uppercase">
+              Our <span className="pl-2">Users</span>
             </h1>
-            <p className="mt-2 font-poppins text-sm text-gray-300">
+            <p className=" font-poppins text-sm text-gray-300">
             Browse all our current users.
           </p>
           </div>
@@ -201,7 +201,7 @@ export default function PostsListClient({ posts, users }) {
                 {users.slice(startindex2, endindex2).map((user) => {
                   return (
                     <div
-                      className="flex justify-between items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-xl px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset]"
+                      className="flex justify-start items-center gap-4 w-fit bg-secondary-foreground p-3 rounded-lg px-6 border border-[rgba(255,255,255,0.10)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] min-w-80"
                       key={user.name}
                     >
                       <Avatar className="h-10 w-10">
@@ -239,7 +239,7 @@ export default function PostsListClient({ posts, users }) {
                         <button
                           className={`${
                             currentPage2 === i
-                              ? "font-bold text-white px-2 bg-primary rounded-2xl"
+                              ? "font-bold text-white px-2 bg-button rounded-2xl"
                               : "text-slate-50 hover:bg-muted hover:text-black px-2 font-semibold rounded-2xl"
                           }`}
                           onClick={() => setCurrentPage2(i)}

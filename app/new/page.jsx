@@ -150,7 +150,7 @@ function New() {
         />
         <button
           type="submit"
-          className="flex justify-center items-center gap-1 bg-accent p-2 px-4 rounded-sm text-sm font-medium font-roboto mt-2 text-white"
+          className="flex justify-center items-center gap-1 bg-accent p-2 px-4 rounded-sm text-sm font-semibold font-roboto mt-2 text-white"
         >
           Submit Post{" "}
           {isSubmitting ? <Loader className="animate-spin stroke-2" /> : ""}
