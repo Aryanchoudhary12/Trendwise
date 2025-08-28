@@ -15,7 +15,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { MessageCircleX, UserRoundXIcon } from "lucide-react";
+import { UserRoundXIcon } from "lucide-react";
+import noPost from "@/public/NoPost.png";
+import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function PostsListClient({ posts, users }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -78,7 +80,10 @@ export default function PostsListClient({ posts, users }) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button className="p-3 px-4 font-poppins  text-sm rounded-sm font-medium bg-button" type="submit">
+        <button
+          className="p-3 px-4 font-poppins  text-sm rounded-sm font-medium bg-button"
+          type="submit"
+        >
           Search
         </button>
       </form>
@@ -108,8 +113,8 @@ export default function PostsListClient({ posts, users }) {
               Latest <span className="pl-2">Posts</span>
             </h1>
             <p className=" font-poppins text-sm text-gray-300">
-              Browse all latest posts created our users including articles, updates, and
-              more.
+              Browse all latest posts created our users including articles,
+              updates, and more.
             </p>
           </div>
         </div>
@@ -179,9 +184,21 @@ export default function PostsListClient({ posts, users }) {
             </Pagination>
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center w-full h-80 bg-primary/50 rounded-md mt-4">
-            <MessageCircleX className="stroke-2 h-20 w-20" />
-            <h1 className="mt-4 text-lg font-medium">No post available</h1>
+          <div className="flex flex-col justify-center items-center w-full h-80 bg-secondary-foreground rounded-2xl mt-4 gap-1">
+            <Image
+              src={noPost}
+              height={400}
+              width={400}
+              alt="no post"
+              className="h-30 w-fit"
+            ></Image>
+            <h1 className="text-2xl font-bold font-poppins">
+              No post available
+            </h1>
+            <span className="text-sm font-poppins font-medium text-primary">
+              {" "}
+              Be the first to upload and share your thoughts
+            </span>
           </div>
         )}
         <div className="flex justify-start items-center gap-2 mt-4">
@@ -190,8 +207,8 @@ export default function PostsListClient({ posts, users }) {
               Our <span className="pl-2">Users</span>
             </h1>
             <p className=" font-poppins text-sm text-gray-300">
-            Browse all our current users.
-          </p>
+              Browse all our current users.
+            </p>
           </div>
         </div>
         <div className="mt-4 mb-10">
@@ -265,9 +282,21 @@ export default function PostsListClient({ posts, users }) {
               </Pagination>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center w-full h-80 bg-primary/50 rounded-md">
-              <UserRoundXIcon className="stroke-2 h-20 w-20" />
-              <h1 className="mt-4 text-lg font-medium">No user available</h1>
+            <div className="flex flex-col justify-center items-center w-full h-80 bg-secondary-foreground rounded-2xl mt-4 gap-1">
+              <Image
+                src={noPost}
+                height={400}
+                width={400}
+                alt="no post"
+                className="h-30 w-fit"
+              ></Image>
+              <h1 className="text-2xl font-bold font-poppins">
+                No user available
+              </h1>
+              <span className="text-sm font-poppins font-medium text-primary w-md">
+                {" "}
+                Sign in to become our first member of our team and expand our community.
+              </span>
             </div>
           )}
         </div>

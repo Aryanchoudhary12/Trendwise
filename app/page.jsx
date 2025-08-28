@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOption";
 import PostsListClient from "./Postlist";
 import Link from "next/link";
+import { HoverBorderGradient } from "@/components/ui/hover-border";
 const prisma = new PrismaClient();
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -24,7 +25,14 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 lg:grid-cols-5  place-items-center absolute top-0 p-4 gap-4 bg-gradient-to-b from-background/10 via-background/40 to-background h-[40rem] lg:h-[32rem] w-full">
         <div className="flex flex-col justify-center items-center lg:items-start p-4 col-span-3 w-full">
-          <span className="flex justify-center items-center gap-1  font-bold font-poppins py-2 text-4xl lg:text-5xl text-center lg:text-left uppercase w-md xl:w-xl">
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="dark:bg-secondary-foreground bg-white text-black dark:text-white flex items-center space-x-2 px-8 py-1.5"
+          >
+            <span className="text-xs font-poppins font-medium">Connect with latest trend with AI</span>
+          </HoverBorderGradient>
+          <span className="flex justify-center items-center gap-1  font-bold font-poppins py-2 text-4xl lg:text-5xl text-center lg:text-left uppercase w-md xl:w-xl mt-2">
             AI-Powered Insights with TRENDWISE
           </span>
 
