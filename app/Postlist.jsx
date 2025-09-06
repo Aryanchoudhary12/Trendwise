@@ -75,7 +75,7 @@ export default function PostsListClient({ posts, users }) {
       <form action="" className="flex justify-center gap-2 mt-10 ">
         <input
           type="text"
-          className="p-3 px-4 bg-secondary-foreground border border-muted/10 text-sm rounded-sm w-80 outline-none "
+          className="p-3 px-4 bg-secondary-foreground border border-muted/10 text-sm rounded-sm w-56 md:w-80 outline-none "
           placeholder="Search for blogs"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

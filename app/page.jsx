@@ -32,11 +32,11 @@ export default async function Home() {
           >
             <span className="text-xs font-poppins font-medium">Connect with latest trend with AI</span>
           </HoverBorderGradient>
-          <span className="flex justify-center items-center gap-1  font-bold font-poppins py-2 text-4xl lg:text-5xl text-center lg:text-left uppercase w-md xl:w-xl mt-2">
+          <span className="flex justify-center items-center gap-1  font-bold font-poppins py-2 text-4xl lg:text-5xl text-center lg:text-left uppercase sm:w-md xl:w-xl mt-2">
             AI-Powered Insights with TRENDWISE
           </span>
 
-          <p className="text-sm font-poppins font-normal mt-2 text-center lg:text-left w-sm lg:w-md text-primary ">
+          <p className="text-sm font-poppins font-normal mt-2 text-center lg:text-left  sm:w-sm lg:w-md text-primary ">
             Stay ahead with the latest stories, viral trends, and insightful
             blogs — all powered by artificial intelligence.
           </p>
