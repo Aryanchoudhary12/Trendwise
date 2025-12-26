@@ -12,8 +12,10 @@ import { NextResponse } from "next/server";
 import { useSession } from "next-auth/react";
 function PostDetails() {
   const { data: session } = useSession();
+  const authorID = data?.authorId;
+  console.log(data);
   const { register, handleSubmit, reset } = useForm();
-  const [data, setData] = useState([]);
+  const [postdata, setData] = useState([]);
   const params = useParams();
   const id = params?.id;
   const fetchPost = async () => {
@@ -24,8 +26,6 @@ function PostDetails() {
     fetchPost();
   }, [id]);
 
-  const authorID = data?.authorId;
-  console.log(data);
   if (!id)
     return NextResponse.json({ error: "No post available" }, { status: 500 });
   return (
@@ -35,25 +35,27 @@ function PostDetails() {
         <span className="font-poppins font-medium text-secondary">
           Published on :{" "}
         </span>
-        {new Date(data.createdAt).toDateString()}
+        {new Date(postdata.createdAt).toDateString()}
       </p>
       <h1 className="font-roboto text-5xl font-medium w-11/12 text-center">
-        {data?.title ?? "Loading ..."}
+        {postdata?.title ?? "Loading ..."}
       </h1>
-      {data.published == true ? (
+      {postdata.published == true ? (
         <p className="mt-4 font-poppins ">
           <span className="font-semibold text-secondary">Author :</span>{" "}
-          {data?.author?.name ?? "loading..."}
+          {postdata?.author?.name ?? "loading..."}
         </p>
       ) : (
         <div className="flex gap-2 items-center justify-center font-poppins mt-4 font-medium">
           <span className="font-semibold text-secondary">Author :</span>
-          <div className="flex justify-center items-center gap-1"><Sparkles className="h-5 w-5" /> Groq AI</div>
+          <div className="flex justify-center items-center gap-1">
+            <Sparkles className="h-5 w-5" /> Groq AI
+          </div>
         </div>
       )}
-      {data?.image ? (
+      {postdata?.image ? (
         <Image
-          src={data?.image}
+          src={postdata?.image}
           alt="post image"
           width={200}
           height={200}
@@ -63,13 +65,15 @@ function PostDetails() {
         <Loader className="mt-4 h-10 w-10 stroke-muted animate-spin" />
       )}
       <p className="mt-4 p-2 px-4 rounded-full font-poppins bg-muted/90">
-        {data?.category ?? "loading..."}
+        {postdata?.category ?? "loading..."}
       </p>
-      <p className="mt-4 font-poppins w-11/12 text-center">{data.content}</p>
+      <p className="mt-4 font-poppins w-11/12 text-center">
+        {postdata.content}
+      </p>
 
       <div className="mt-10 mb-10 w-full p-4">
         <p className="w-full font-medium font-poppins ">
-          Comments({data?.comments?.length ?? 0})
+          Comments({postdata?.comments?.length ?? 0})
         </p>
         <hr className="mt-2 h-0 border-1 rounded-full border-primary" />
         <form
